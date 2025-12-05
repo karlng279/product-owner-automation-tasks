@@ -4,9 +4,9 @@ This document tracks all features in the product and their status across the PO 
 
 ## Feature Status Overview
 
-| Feature | PRD | USM | USL | USD | UAT | Design | Dev | QA | Status |
-|---------|-----|-----|-----|-----|-----|--------|-----|-------|--------|
-| *No features yet* | - | - | - | - | - | - | - | - | - |
+| Feature | PRD | USM | USL | USD | UAT | Design | Dev | QA | Priority | Status |
+|---------|-----|-----|-----|-----|-----|--------|-----|-------|----------|--------|
+| *No features yet* | - | - | - | - | - | - | - | - | - | - |
 
 **Legend:**
 - ✅ Complete
@@ -14,6 +14,12 @@ This document tracks all features in the product and their status across the PO 
 - ⏳ Not Started
 - ❌ Blocked
 - 🔄 Needs Update (upstream change)
+
+**Priorities:**
+- **P0:** Working on now
+- **P1:** Next up
+- **P2:** Soon
+- **P3:** Someday/Maybe
 
 ## Features by ID
 
@@ -81,4 +87,4 @@ Feature: booking-flow
 
 ---
 
-*Last updated: [Date]*
+*Last updated: 2025-12-05*

@@ -1,172 +1,342 @@
-# Product Repository - Smart Compliance Hub
+# ONE API Portal
 
-This repository contains the complete lifecycle artifacts for the product, from discovery and requirements through design, implementation, and testing.
+> Redesigning the developer experience for ONE LINE's shipping APIs with a modern UI/UX and monetization model
+
+**Current Portal:** [ONE LINE Developers](https://developers.one-line.com/)
+**Mission:** Transform the developer experience and introduce API-as-a-Product business model
+
+---
+
+## 🎯 Product Vision
+
+### What We're Building
+
+**ONE API Portal** reimagines the ONE LINE developer portal with a focus on:
+1. **MVP:** Modern UI/UX redesign of the existing developer portal
+2. **Post-MVP:** API pricing and monetization business model
+
+### Target Users
+- **Freight Forwarders** - Integrating shipment tracking into their TMS
+- **Shippers** - Building custom dashboards and automation tools
+- **Logistics Providers** - Connecting multi-carrier visibility platforms
+- **Third-Party Developers** - Building shipping applications and SaaS products
+
+---
+
+## 🚀 Product Roadmap
+
+### MVP: UI/UX Redesign (Phase 1)
+**Goal:** Modernize the developer experience of existing ONE LINE APIs
+
+**Focus Areas:**
+- ✨ **Modern, Clean Interface** - Intuitive navigation, better information architecture
+- 📚 **Enhanced Documentation** - Clearer API guides, code examples, interactive playground
+- 🎨 **Improved Developer Experience** - Faster onboarding, better search, mobile-responsive
+- 🔑 **Streamlined Authentication** - Easier API key management and token generation
+- 🧪 **Better Sandbox Experience** - Test APIs without production impact
+
+**Target Features:**
+- [ ] Redesigned homepage and navigation
+- [ ] API documentation with interactive examples
+- [ ] Developer dashboard (API keys, usage stats)
+- [ ] Getting started wizard
+- [ ] Code snippets in multiple languages
+- [ ] Search functionality
+- [ ] Mobile-responsive design
+
+**Success Metrics:**
+- Reduced time-to-first-API-call by 50%
+- Increased developer satisfaction (NPS score)
+- Lower support tickets related to "how to get started"
+
+---
+
+### Post-MVP: API Pricing Business Model (Phase 2)
+**Goal:** Monetize APIs and create sustainable revenue stream
+
+**Business Model:**
+- 💰 **Freemium Tier** - Free access with rate limits (encourage adoption)
+- 💎 **Professional Tier** - Pay-per-use or subscription (SME customers)
+- 🏢 **Enterprise Tier** - Custom pricing, SLAs, dedicated support
+
+**Target Features:**
+- [ ] Pricing calculator
+- [ ] Usage-based billing system
+- [ ] Subscription management
+- [ ] Real-time usage dashboard
+- [ ] Rate limiting by tier
+- [ ] Invoice generation
+- [ ] Payment integration (Stripe/PayPal)
+- [ ] Plan upgrade/downgrade flows
+
+**Success Metrics:**
+- API revenue generation
+- Conversion rate from free to paid tiers
+- Average revenue per user (ARPU)
+- Customer lifetime value (LTV)
+
+---
+
+## 📋 Current vs. Redesigned Portal
+
+### What's Wrong with Current Portal?
+Based on analysis of https://developers.one-line.com/:
+- ❌ **Outdated UI** - Not modern, not developer-friendly
+- ❌ **Poor Information Architecture** - Hard to find what you need
+- ❌ **Limited Code Examples** - Lack of interactive examples
+- ❌ **Weak Onboarding** - Unclear getting started flow
+- ❌ **No Pricing Model** - Free but unsustainable, no monetization
+
+### What We're Improving (MVP)
+- ✅ **Modern UI/UX** - Clean, fast, intuitive (inspired by Stripe, Twilio)
+- ✅ **Better Navigation** - Clear categorization, powerful search
+- ✅ **Interactive Docs** - Live API playground, copy-paste examples
+- ✅ **Guided Onboarding** - Step-by-step getting started wizard
+- ✅ **Mobile-First** - Responsive design for all devices
+
+### What We're Adding (Post-MVP)
+- ✅ **API Pricing Tiers** - Freemium, Pro, Enterprise
+- ✅ **Usage Analytics** - Real-time API call tracking
+- ✅ **Billing System** - Automated invoicing and payments
+- ✅ **Self-Service** - Upgrade/downgrade without sales
+
+---
+
+## 🎨 Design Philosophy
+
+### Developer Experience Principles
+1. **Minimize Time-to-First-Call** - Get developers calling APIs in <10 minutes
+2. **Self-Service First** - Reduce dependency on support/sales
+3. **Clear Pricing** - No hidden fees, predictable costs
+4. **Production-Ready Sandbox** - Test safely before going live
+5. **Comprehensive Documentation** - Every endpoint, every parameter explained
+
+### Inspiration Sources
+- **Stripe Docs** - Best-in-class API documentation and UX
+- **Twilio** - Excellent onboarding and getting started experience
+- **GitHub API** - Great reference docs and changelog
+- **Postman** - Interactive API playground approach
+
+**Research:** [discovery/competitor-analysis/](./discovery/competitor-analysis/)
+
+---
 
 ## 🏗️ Repository Structure
 
+This repository contains the complete product lifecycle - from discovery to deployment.
+
 ```
-/                               # Repo root = one product
+/
+├── NOW.md                      # Current work focus (solo PM workflow)
+├── BACKLOG.md                  # Prioritized feature backlog
 │
-├── po-framework/               # Global PO automation templates & rules
-│   └── product-po-automation-spec/
-│       ├── stage1-prd/         # PRD templates, rules, examples
-│       ├── stage2-usm/         # USM templates, rules, examples
-│       ├── stage3-usl/         # USL templates, rules, examples
-│       ├── stage4-usd/         # USD templates, rules, examples
-│       └── stage5-uat/         # UAT templates, rules, examples
-│
-├── resources/                  # Product-specific references & knowledge
-│   ├── business-models/        # BMC, monetization, startup model
-│   ├── domain-knowledge/       # Shipping/compliance notes, glossaries
-│   ├── tech-stack/             # Chosen FE/BE/infra for THIS product
-│   ├── pm-playbooks/           # Backlog rules, interview guides, etc.
-│   └── design-system/          # Design tokens, UI patterns used here
-│
-├── discovery/                  # Problem space & market understanding
-│   ├── business-model/         # Business model canvas, monetization
-│   ├── market-research/        # User interviews, surveys, data
-│   ├── competitor-analysis/    # Competitive landscape analysis
-│   └── notes.md                # General discovery notes
-│
-├── specs/                      # Concrete PRD→UAT for this product
-│   ├── features/               # One folder per feature
-│   │   ├── {feature-name}/
-│   │   │   ├── prd.md          # Stage 1: Product Requirements
-│   │   │   ├── usm.md          # Stage 2: User Story Map
-│   │   │   ├── usl.csv         # Stage 3: User Story List
-│   │   │   ├── usd.csv         # Stage 4: User Story Details
-│   │   │   └── uat.csv         # Stage 5: UAT Test Cases
-│   │   └── ...
-│   └── index.md                # Table of contents for all features
-│
-├── design/                     # UX & UI for this product
-│   ├── wireframes/             # Exported PNG/PDF from Figma
-│   ├── hi-fi/                  # Final UI mocks per feature
-│   ├── prototypes/             # Links/notes about interactive prototypes
-│   └── design-decisions.md     # Key design decisions and rationale
-│
-├── codebase/                   # Actual implementation
-│   ├── apps/
-│   │   ├── web/                # Frontend application (e.g., Next.js)
-│   │   └── api/                # Backend service
-│   ├── packages/               # Shared libraries (UI, domain, utilities)
-│   └── infra/                  # IaC, Docker, k8s manifests, etc.
-│
-├── qa/                         # Testing artifacts & execution history
-│   ├── test-runs/              # Dated copies of UAT with test_result updated
-│   ├── bug-reports/            # Markdown summaries or links to Jira
-│   └── regression-suites/      # Curated UAT subsets for regression
-│
-└── tooling/                    # Scripts & automation for the repo
-    ├── generators/             # CLI to scaffold new features from framework
-    ├── validators/             # Linters/checkers for PRD/USL/CSV structure
-    └── pipelines/              # CI workflows, GitHub Actions, etc.
+├── po-framework/               # PO automation templates (PRD→USM→USL→USD→UAT)
+├── resources/                  # Domain knowledge, tech stack, design system
+├── discovery/                  # Market research, user interviews, competitor analysis
+├── specs/                      # Feature specifications (PRD → UAT)
+├── design/                     # Wireframes, mockups, design decisions
+├── codebase/                   # Implementation (web app, API, infrastructure)
+├── qa/                         # Test cases, bug reports, test runs
+└── tooling/                    # Generators, validators, CI/CD scripts
 ```
 
-## 🚀 Quick Start
+**Full structure:** See [PROJECT_SETUP_COMPLETE.md](./PROJECT_SETUP_COMPLETE.md)
 
-### For Product Owners
-
-1. **Explore Discovery** - Start in `/discovery/` to understand the problem space
-2. **Create Feature Spec** - Use `/tooling/generators/` to scaffold a new feature from framework templates
-3. **Follow PO Workflow** - Progress through PRD → USM → USL → USD → UAT using `/po-framework/` rules
-
-### For Designers
-
-1. **Review Feature PRDs** - Check `/specs/features/{feature-name}/prd.md` for requirements
-2. **Create Wireframes** - Add to `/design/wireframes/`
-3. **Link in PRD** - Update PRD with design links
-
-### For Developers
-
-1. **Review USD** - Check `/specs/features/{feature-name}/usd.csv` for acceptance criteria
-2. **Implement** - Work in `/codebase/`
-3. **Link to Stories** - Reference story IDs in commits and PRs
-
-### For QA
-
-1. **Execute UAT** - Use `/specs/features/{feature-name}/uat.csv` as test cases
-2. **Update Results** - Copy to `/qa/test-runs/` and update `test_result` column
-3. **Report Bugs** - Document in `/qa/bug-reports/`
+---
 
 ## 📋 PO Automation Workflow
 
-This repository follows a structured 5-stage PO automation process:
+This project uses a structured 5-stage workflow for feature development:
 
 ```
-Discovery → PRD → USM → USL → USD → UAT → Implementation → Testing
+Discovery → PRD → USM → USL → USD → UAT → Design → Build → Test → Deploy
 ```
 
-### Stage 1 - PRD (Product Requirements Document)
-- **Purpose:** Single source of truth for *why* and *what*
-- **Format:** Markdown
-- **Location:** `/specs/features/{feature-name}/prd.md`
-- **Template:** `/po-framework/product-po-automation-spec/stage1-prd/`
+### The 5 Stages
 
-### Stage 2 - USM (User Story Map)
-- **Purpose:** Bridge between PRD and backlog via Activities and Steps
-- **Format:** Markdown
-- **Location:** `/specs/features/{feature-name}/usm.md`
-- **Template:** `/po-framework/product-po-automation-spec/stage2-usm/`
+| Stage | Artifact | Purpose | Format |
+|-------|----------|---------|--------|
+| 1 | **PRD** | Product Requirements Document - the *why* and *what* | Markdown |
+| 2 | **USM** | User Story Map - Activities, Steps, Stories | Markdown |
+| 3 | **USL** | User Story List - Prioritized backlog (MoSCoW) | CSV |
+| 4 | **USD** | User Story Details - Acceptance criteria | CSV |
+| 5 | **UAT** | User Acceptance Tests - BDD scenarios (Given/When/Then) | CSV |
 
-### Stage 3 - USL (User Story List)
-- **Purpose:** Backlog index with MoSCoW prioritization
-- **Format:** CSV
-- **Location:** `/specs/features/{feature-name}/usl.csv`
-- **Template:** `/po-framework/product-po-automation-spec/stage3-usl/`
+**Templates & Rules:** [po-framework/product-po-automation-spec/](./po-framework/product-po-automation-spec/)
+**Contributing Guide:** [CONTRIBUTING.md](./CONTRIBUTING.md)
 
-### Stage 4 - USD (User Story Details)
-- **Purpose:** Acceptance criteria and implementation details
-- **Format:** CSV
-- **Location:** `/specs/features/{feature-name}/usd.csv`
-- **Template:** `/po-framework/product-po-automation-spec/stage4-usd/`
+---
 
-### Stage 5 - UAT (User Acceptance Testing)
-- **Purpose:** BDD test scenarios (Given/When/Then)
-- **Format:** CSV
-- **Location:** `/specs/features/{feature-name}/uat.csv`
-- **Template:** `/po-framework/product-po-automation-spec/stage5-uat/`
+## 🎯 MVP Features Breakdown
 
-## 🛠️ Tooling
+### Core User Journeys (MVP Focus)
 
-### Scaffold New Feature
+#### 1. New Developer Onboarding
+- Land on homepage → Understand value proposition → Sign up
+- Get API credentials → Read getting started guide → Make first API call
+- **Target:** <10 minutes to first successful API call
+
+#### 2. API Exploration & Testing
+- Browse API catalog → Read endpoint documentation → Try in sandbox
+- See code examples → Copy snippet → Test in own environment
+- **Target:** Find and test any API in <5 minutes
+
+#### 3. Integration & Production
+- Test in sandbox → Switch to production credentials → Monitor usage
+- Troubleshoot errors → Read changelog → Contact support if needed
+- **Target:** Smooth transition from sandbox to production
+
+#### 4. Self-Service Management (Post-MVP)
+- View usage dashboard → Check current plan → Upgrade if needed
+- Manage billing → Download invoices → Adjust rate limits
+- **Target:** Zero sales/support involvement for upgrades
+
+---
+
+## 📊 Project Status
+
+**Phase:** Initial Setup ✅
+**Next Milestone:** Define MVP Feature #1 - Homepage & Navigation Redesign
+
+### Completed
+- ✅ Repository structure
+- ✅ PO automation framework
+- ✅ Task management system (NOW.md, BACKLOG.md)
+- ✅ Documentation templates
+
+### Next Steps (This Week)
+- [ ] Analyze current ONE LINE developer portal (screenshots, user flows)
+- [ ] Create competitor analysis (Stripe, Twilio, Postman, GitHub)
+- [ ] Define MVP features and priorities
+- [ ] Create first PRD: Homepage Redesign
+
+### Near-Term (This Month)
+- [ ] Complete discovery phase
+- [ ] Spec 3-5 MVP features (PRD → UAT)
+- [ ] Create wireframes for key pages
+- [ ] Define tech stack
+
+---
+
+## 🔬 Discovery & Research
+
+### Key Questions to Answer
+- ❓ What are the biggest pain points in current portal?
+- ❓ What do developers value most in API portals?
+- ❓ What pricing model works for shipping APIs?
+- ❓ How do competitors monetize their APIs?
+- ❓ What's the technical feasibility of redesign vs. rebuild?
+
+### Research Activities
+- [ ] Heuristic evaluation of current portal
+- [ ] User interviews with developers (if possible)
+- [ ] Competitor teardown (Stripe, Twilio, Postman)
+- [ ] Pricing model research (Algolia, SendGrid, Mapbox)
+- [ ] Technical assessment of ONE LINE APIs
+
+**Document in:** [discovery/](./discovery/)
+
+---
+
+## 💡 Business Model (Post-MVP)
+
+### Freemium Tier (Free)
+- **Rate Limit:** 100 requests/day
+- **Features:** All read-only APIs (tracking, schedules, routes)
+- **Support:** Community forum only
+- **Target:** Hobbyists, students, small projects
+
+### Professional Tier ($99-499/month)
+- **Rate Limit:** 10,000-50,000 requests/month
+- **Features:** All APIs including booking (read-only)
+- **Support:** Email support (24h SLA)
+- **Target:** SME freight forwarders, logistics startups
+
+### Enterprise Tier (Custom Pricing)
+- **Rate Limit:** Unlimited or custom
+- **Features:** All APIs including booking (write access)
+- **Support:** Dedicated support, SLA, account manager
+- **Target:** Large forwarders, global 3PLs, logistics platforms
+
+**Research:** [discovery/business-model/](./discovery/business-model/)
+
+---
+
+## 🛠️ Development Workflow
+
+### 1. Discovery & Research
 ```bash
-cd tooling/generators
-./new-feature.sh feature-name
+# Analyze competitors, interview users, define problems
+# Document in /discovery/
 ```
 
-### Validate PRD
+### 2. Define Feature (PRD)
 ```bash
-cd tooling/validators
-./validate-prd.js ../specs/features/feature-name/prd.md
+# Create PRD following framework
+# Store in /specs/features/{feature-name}/prd.md
 ```
 
-### Run Quality Gates
+### 3. Map & Detail (USM → USL → USD → UAT)
 ```bash
-cd tooling/validators
-./validate-quality-gate.js ../specs/features/feature-name/
+# Follow 5-stage workflow
+# All artifacts in /specs/features/{feature-name}/
 ```
+
+### 4. Design
+```bash
+# Create wireframes and mockups
+# Store in /design/ and link in PRD
+```
+
+### 5. Build & Test
+```bash
+# Implement in /codebase/
+# Execute UAT, document results in /qa/
+```
+
+---
 
 ## 📖 Documentation
 
-- **Framework Rules:** See `/po-framework/product-po-automation-spec/README.md`
-- **Feature Index:** See `/specs/index.md`
-- **Contributing Guide:** See `CONTRIBUTING.md`
+### For Product Management
+- **Current Focus:** [NOW.md](./NOW.md)
+- **Backlog:** [BACKLOG.md](./BACKLOG.md)
+- **Feature Index:** [specs/index.md](./specs/index.md)
+- **Framework:** [po-framework/README.md](./po-framework/README.md)
 
-## 🤝 Contributing
+### For Research & Discovery
+- **Competitor Analysis:** [discovery/competitor-analysis/](./discovery/competitor-analysis/)
+- **Business Model:** [discovery/business-model/](./discovery/business-model/)
+- **Market Research:** [discovery/market-research/](./discovery/market-research/)
 
-1. Create a new feature using the generator in `/tooling/generators/`
-2. Follow the PO automation workflow (PRD → USM → USL → USD → UAT)
-3. Validate using quality gates in `/tooling/validators/`
-4. Submit PR with links to all stage artifacts
+### For Development
+- **Tech Stack:** [resources/tech-stack/](./resources/tech-stack/)
+- **Domain Knowledge:** [resources/domain-knowledge/](./resources/domain-knowledge/)
+- **Contributing:** [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+---
+
+## 🔗 References
+
+- **Current Portal:** https://developers.one-line.com/
+- **ONE LINE (Company):** https://www.one-line.com/
+- **Framework Docs:** [po-framework/](./po-framework/)
+
+### Competitor Portals for Inspiration
+- Stripe Developers: https://stripe.com/docs
+- Twilio Docs: https://www.twilio.com/docs
+- GitHub API: https://docs.github.com/en/rest
+- Postman API Platform: https://www.postman.com/api-platform/
+
+---
 
 ## 📝 License
 
-[Add your license here]
+[To be determined]
 
-## 🔗 Related Resources
+---
 
-- **PO Framework Documentation:** `/po-framework/README.md`
-- **Design System:** `/resources/design-system/`
-- **Tech Stack:** `/resources/tech-stack/`
-- **Domain Knowledge:** `/resources/domain-knowledge/`
+**Product:** ONE API Portal
+**Vision:** Best-in-class developer experience for shipping APIs
+**Maintained by:** Technical Product Manager (Solo)
+**Last Updated:** 2025-12-05

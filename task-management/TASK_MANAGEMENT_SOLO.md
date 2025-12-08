@@ -11,10 +11,10 @@
 **File:** `/specs/index.md` (already exists)
 
 ### Level 2: What am I working on now? (Current Focus)
-**File:** `/NOW.md` (new, at repo root)
+**File:** `/Task-management/NOW.md`
 
 ### Level 3: What's next? (Backlog)
-**File:** `/BACKLOG.md` (new, at repo root)
+**File:** `/Task-management/BACKLOG.md`
 
 That's it. Three files, simple updates, always know where you are.
 
@@ -64,7 +64,7 @@ That's it. Three files, simple updates, always know where you are.
 
 ## 🎯 Level 2: NOW.md - Current Focus
 
-**File:** `/NOW.md` (at repo root)
+**File:** `/Task-management/NOW.md`
 
 **Purpose:** Single source of truth for "what I'm working on right now"
 
@@ -155,7 +155,7 @@ That's it. Three files, simple updates, always know where you are.
 
 ## 🗂️ Level 3: BACKLOG.md - What's Next
 
-**File:** `/BACKLOG.md` (at repo root)
+**File:** `/Task-management/BACKLOG.md`
 
 **Purpose:** Prioritized list of everything you might do
 
@@ -281,7 +281,7 @@ That's it. Three files, simple updates, always know where you are.
 ### Daily (2-3 minutes)
 ```bash
 # Morning: Check NOW.md
-cat NOW.md
+cat Task-management/NOW.md
 # See what you're working on today
 
 # Evening: Update NOW.md
@@ -302,8 +302,8 @@ cat NOW.md
 ### Monthly (30 minutes)
 ```bash
 # Strategic review
-# - Update BACKLOG.md priorities
-# - Archive old notes from NOW.md
+# - Update Task-management/BACKLOG.md priorities
+# - Archive old notes from NOW.md to Task-management/archive/
 # - Review /specs/index.md for completed features
 # - Plan next month's focus
 ```
@@ -314,16 +314,18 @@ cat NOW.md
 
 ```
 /
-├── NOW.md                      # What you're working on now
-├── BACKLOG.md                  # Prioritized list of everything
 ├── README.md                   # Repo overview (existing)
 ├── CONTRIBUTING.md             # How to work with repo (existing)
 │
-├── specs/
-│   └── index.md                # Feature status (enhanced)
+├── Task-management/            # Task management files
+│   ├── NOW.md                  # What you're working on now
+│   ├── BACKLOG.md              # Prioritized list of everything
+│   ├── TASK_MANAGEMENT_SOLO.md # This methodology guide
+│   └── archive/                # Archive old NOW.md entries
+│       └── now-2025-01.md
 │
-└── archive/                    # NEW: Archive old NOW.md entries
-    └── now-2025-01.md
+└── specs/
+    └── index.md                # Feature status (enhanced)
 ```
 
 **That's it.** Three tracking files, minimal overhead.
@@ -390,10 +392,10 @@ cat NOW.md
 If you approve, I'll create:
 
 ### Minimal Setup (15 minutes)
-1. Create `/NOW.md` with current state
-2. Create `/BACKLOG.md` with sample priorities
+1. Create `/Task-management/NOW.md` with current state
+2. Create `/Task-management/BACKLOG.md` with sample priorities
 3. Enhance `/specs/index.md` with Priority column
-4. Create `/archive/` directory
+4. Create `/Task-management/archive/` directory
 
 ### Optional (10 minutes)
 5. Create sample `TASKS.md` for one feature (if you want task breakdowns)
@@ -404,8 +406,8 @@ If you approve, I'll create:
 ## 💡 My Recommendation for You
 
 **Start with:**
-- ✅ `/NOW.md` - Update daily (2 min)
-- ✅ `/BACKLOG.md` - Review weekly (10 min)
+- ✅ `/Task-management/NOW.md` - Update daily (2 min)
+- ✅ `/Task-management/BACKLOG.md` - Review weekly (10 min)
 - ✅ `/specs/index.md` - Update when stage changes
 
 **Skip:**

@@ -127,8 +127,10 @@ This repository contains the complete product lifecycle - from discovery to depl
 
 ```
 /
-├── NOW.md                      # Current work focus (solo PM workflow)
-├── BACKLOG.md                  # Prioritized feature backlog
+├── Task-management/            # Solo PM workflow tracking
+│   ├── NOW.md                  # Current work focus
+│   ├── BACKLOG.md              # Prioritized feature backlog
+│   └── TASK_MANAGEMENT_SOLO.md # Task management methodology
 │
 ├── po-framework/               # PO automation templates (PRD→USM→USL→USD→UAT)
 ├── resources/                  # Domain knowledge, tech stack, design system
@@ -201,7 +203,7 @@ Discovery → PRD → USM → USL → USD → UAT → Design → Build → Test 
 ### Completed
 - ✅ Repository structure
 - ✅ PO automation framework
-- ✅ Task management system (NOW.md, BACKLOG.md)
+- ✅ Task management system (Task-management folder)
 - ✅ Documentation templates
 
 ### Next Steps (This Week)
@@ -299,8 +301,9 @@ Discovery → PRD → USM → USL → USD → UAT → Design → Build → Test 
 ## 📖 Documentation
 
 ### For Product Management
-- **Current Focus:** [NOW.md](./NOW.md)
-- **Backlog:** [BACKLOG.md](./BACKLOG.md)
+- **Current Focus:** [Task-management/NOW.md](./Task-management/NOW.md)
+- **Backlog:** [Task-management/BACKLOG.md](./Task-management/BACKLOG.md)
+- **Task Management Guide:** [Task-management/TASK_MANAGEMENT_SOLO.md](./Task-management/TASK_MANAGEMENT_SOLO.md)
 - **Feature Index:** [specs/index.md](./specs/index.md)
 - **Framework:** [po-framework/README.md](./po-framework/README.md)
 
@@ -339,4 +342,4 @@ Discovery → PRD → USM → USL → USD → UAT → Design → Build → Test 
 **Product:** ONE API Portal
 **Vision:** Best-in-class developer experience for shipping APIs
 **Maintained by:** Technical Product Manager (Solo)
-**Last Updated:** 2025-12-05
+**Last Updated:** 2025-12-08

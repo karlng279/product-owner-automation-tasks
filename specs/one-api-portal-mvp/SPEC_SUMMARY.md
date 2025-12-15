@@ -333,7 +333,7 @@
 ## 📂 Repository Structure
 
 ```
-specs/features/one-api-portal-mvp/
+specs/one-api-portal-mvp/
 ├── prd.md                  # Product Requirements Document (v0.2)
 ├── usm.md                  # User Story Map (6 activities, 16 steps)
 ├── usl.csv                 # User Story List (17 stories)

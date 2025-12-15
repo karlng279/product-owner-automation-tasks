@@ -38,10 +38,10 @@ Track story ID ranges to prevent conflicts:
 ## Quick Links
 
 ### ONE API Portal MVP (PRD-001)
-- **PRD:** [specs/features/one-api-portal-mvp/prd.md](./features/one-api-portal-mvp/prd.md) (v0.2)
-- **USM:** [specs/features/one-api-portal-mvp/usm.md](./features/one-api-portal-mvp/usm.md) (6 activities, 17 stories)
-- **USL:** [specs/features/one-api-portal-mvp/usl.csv](./features/one-api-portal-mvp/usl.csv) (14 Must-have, 3 Should-have)
-- **USD:** [specs/features/one-api-portal-mvp/usd.csv](./features/one-api-portal-mvp/usd.csv) (221 ACs, 53 story points)
+- **PRD:** [specs/one-api-portal-mvp/prd.md](./one-api-portal-mvp/prd.md) (v0.2)
+- **USM:** [specs/one-api-portal-mvp/usm.md](./one-api-portal-mvp/usm.md) (6 activities, 17 stories)
+- **USL:** [specs/one-api-portal-mvp/usl.csv](./one-api-portal-mvp/usl.csv) (14 Must-have, 3 Should-have)
+- **USD:** [specs/one-api-portal-mvp/usd.csv](./one-api-portal-mvp/usd.csv) (221 ACs, 53 story points)
 - **Status:** USD Complete (2025-12-08)
 - **Next:** Create UAT (User Acceptance Tests)
 

@@ -37,7 +37,7 @@ Thank you for contributing to this product! This guide will help you navigate th
 
 3. **Review Existing Features**
    ```bash
-   ls specs/features/
+   ls specs/
    cat specs/index.md
    ```
 
@@ -134,7 +134,7 @@ cd tooling/generators
 
 This creates:
 ```
-specs/features/your-feature-name/
+specs/your-feature-name/
 ├── prd.md          # Assigned PRD-XXX
 ├── usm.md          # Assigned USM-XXX
 ├── usl.csv         # Template with proper columns
@@ -145,7 +145,7 @@ specs/features/your-feature-name/
 ### Step 3: Fill Out PRD
 
 ```bash
-cd specs/features/your-feature-name
+cd specs/your-feature-name
 # Edit prd.md following the template
 ```
 
@@ -169,7 +169,7 @@ cd specs/features/your-feature-name
 
 ```bash
 cd tooling/validators
-./validate-prd.js ../../specs/features/your-feature-name/prd.md
+./validate-prd.js ../../specs/your-feature-name/prd.md
 ```
 
 **Must pass before moving to USM.**
@@ -185,7 +185,7 @@ Repeat for each stage:
 **Full validation:**
 ```bash
 cd tooling/validators
-./validate-quality-gate.js ../../specs/features/your-feature-name/
+./validate-quality-gate.js ../../specs/your-feature-name/
 ```
 
 ### Step 6: Update Feature Index
@@ -209,7 +209,7 @@ cd tooling/validators
 
 2. **Update PRD**
    ```bash
-   cd specs/features/your-feature-name
+   cd specs/your-feature-name
    # Edit prd.md
    # Increment version number
    # Update last_updated date
@@ -224,7 +224,7 @@ cd tooling/validators
 4. **Validate**
    ```bash
    cd tooling/validators
-   ./validate-quality-gate.js ../../specs/features/your-feature-name/
+   ./validate-quality-gate.js ../../specs/your-feature-name/
    ```
 
 5. **Mark Downstream as "Needs Update"**
@@ -333,7 +333,7 @@ feat(shipment): implement list view (ST-001)
 - Add search by booking number
 
 Implements: ST-001, ST-002
-PRD: /specs/features/shipment-overview/prd.md
+PRD: /specs/shipment-overview/prd.md
 USD: AC-001 to AC-017
 ```
 
@@ -358,9 +358,9 @@ USD: AC-XXX to AC-YYY
 
 ## Related Specs
 - **Stories:** ST-001, ST-002
-- **PRD:** /specs/features/your-feature/prd.md
-- **USD:** /specs/features/your-feature/usd.csv
-- **UAT:** /specs/features/your-feature/uat.csv
+- **PRD:** /specs/your-feature/prd.md
+- **USD:** /specs/your-feature/usd.csv
+- **UAT:** /specs/your-feature/uat.csv
 
 ## Acceptance Criteria
 - [x] AC-001: Description
@@ -443,7 +443,7 @@ USD: AC-XXX to AC-YYY
 4. Share with team for feedback
 
 ### I want to update an existing feature
-1. Edit the appropriate artifact in `/specs/features/{feature}/`
+1. Edit the appropriate artifact in `/specs/{feature}/`
 2. Increment version number
 3. Cascade changes to downstream artifacts
 4. Re-validate
@@ -465,7 +465,7 @@ USD: AC-XXX to AC-YYY
 ```bash
 # Validate specs
 cd tooling/validators
-./validate-quality-gate.js ../../specs/features/{feature}/
+./validate-quality-gate.js ../../specs/{feature}/
 
 # Run unit tests
 cd codebase/apps/web

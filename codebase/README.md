@@ -160,8 +160,8 @@ Implements:
 - ST-001: Open Shipment Overview page
 - ST-002: See list of upcoming departures
 
-PRD: /specs/features/shipment-overview/prd.md
-USD: /specs/features/shipment-overview/usd.csv (AC-001 to AC-017)
+PRD: /specs/shipment-overview/prd.md
+USD: /specs/shipment-overview/usd.csv (AC-001 to AC-017)
 ```
 
 **Code Comments:**
@@ -186,9 +186,9 @@ export function ShipmentOverview() {
 
 ## Related Specs
 - **Story:** ST-001, ST-002
-- **PRD:** /specs/features/shipment-overview/prd.md
-- **USD:** /specs/features/shipment-overview/usd.csv
-- **UAT:** /specs/features/shipment-overview/uat.csv
+- **PRD:** /specs/shipment-overview/prd.md
+- **USD:** /specs/shipment-overview/usd.csv
+- **UAT:** /specs/shipment-overview/uat.csv
 
 ## Acceptance Criteria
 - [x] AC-001: Page accessible from navigation

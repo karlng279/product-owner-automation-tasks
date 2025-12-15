@@ -9,6 +9,7 @@ discovery/
 ├── business-model/         # Business model & monetization
 ├── market-research/        # User research & market analysis
 ├── competitor-analysis/    # Competitive landscape
+├── domain-knowledge/       # Industry expertise & domain knowledge
 └── notes.md                # General discovery notes
 ```
 
@@ -63,6 +64,19 @@ Competitive landscape:
 - `ux-teardowns/`
   - `competitor-a-shipment-tracking.md`
   - `competitor-b-dashboard.md`
+
+### domain-knowledge/
+Industry-specific knowledge and expertise:
+- Industry glossaries and terminology
+- Compliance and regulatory requirements
+- Industry standards and best practices
+- Common workflows and processes
+
+**Example files:**
+- `shipping-glossary.md`
+- `compliance-requirements.md`
+- `industry-standards.md`
+- `incoterms-guide.md`
 
 ### notes.md
 Catch-all for discovery notes:
@@ -181,6 +195,7 @@ Date: YYYY-MM-DD
 
 ## Related Directories
 
-- `/resources/domain-knowledge/` - For established domain expertise
-- `/specs/` - Where discovery insights become features
-- `/design/` - UX research often feeds discovery
+- [/specs/](../specs/) - Where discovery insights become features
+- [/design/](../design/) - UX research often feeds discovery
+- [/codebase/tech-stack/](../codebase/tech-stack/) - Technical architecture decisions
+- [/po-framework/pm-playbooks/](../po-framework/pm-playbooks/) - Product management processes

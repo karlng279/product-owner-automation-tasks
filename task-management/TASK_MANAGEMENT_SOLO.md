@@ -172,7 +172,7 @@ That's it. Three files, simple updates, always know where you are.
 
 **Shipment Overview - Basic Dashboard**
 - Status: 🚧 Building (ST-003 in progress)
-- PRD: `/specs/features/shipment-overview/prd.md`
+- PRD: `/specs/shipment-overview/prd.md`
 - Stories: 8 total (2 done, 1 in progress, 5 todo)
 - Target: Jan 2025
 
@@ -182,7 +182,7 @@ That's it. Three files, simple updates, always know where you are.
 
 ### Booking Flow
 - Status: Planning (PRD complete, USM in progress)
-- PRD: `/specs/features/booking-flow/prd.md`
+- PRD: `/specs/booking-flow/prd.md`
 - Effort: ~3 weeks
 - Target: Feb 2025
 - Dependencies: Shipment Overview complete
@@ -357,7 +357,7 @@ cat task-management/NOW.md
 
 **If you want task breakdowns** for a feature, add this **optionally**:
 
-**File:** `/specs/features/shipment-overview/TASKS.md`
+**File:** `/specs/shipment-overview/TASKS.md`
 
 ```markdown
 # Tasks: Shipment Overview

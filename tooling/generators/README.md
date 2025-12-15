@@ -18,7 +18,7 @@ Creates a complete feature structure from templates.
 ```
 
 **What it does:**
-1. Creates `/specs/features/<feature-name>/` directory
+1. Creates `/specs/<feature-name>/` directory
 2. Copies templates from `/po-framework/product-po-automation-spec/`
 3. Renames files (template.md → prd.md, etc.)
 4. Assigns next available IDs (PRD-XXX, USM-XXX)
@@ -27,7 +27,7 @@ Creates a complete feature structure from templates.
 
 **Output:**
 ```
-specs/features/shipment-overview/
+specs/shipment-overview/
 ├── prd.md          # Contains: id: PRD-001
 ├── usm.md          # Contains: id: USM-001
 ├── usl.csv         # Proper CSV schema
@@ -84,4 +84,4 @@ specs/features/shipment-overview/
 
 - **Templates:** `/po-framework/product-po-automation-spec/`
 - **Validators:** `/tooling/validators/` (validate generated artifacts)
-- **Specs:** `/specs/features/` (where generated features go)
+- **Specs:** `/specs/` (where generated features go)

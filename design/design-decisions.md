@@ -48,7 +48,7 @@ When making a significant design decision:
 - [Specific guidance for developers]
 
 ### References
-- PRD: [Link to /specs/features/{feature}/prd.md]
+- PRD: [Link to /specs/{feature}/prd.md]
 - Design: [Link to Figma or /design/hi-fi/]
 - Discussion: [Link to meeting notes or Slack thread]
 ```
@@ -97,7 +97,7 @@ Use a **table layout** for the shipment overview on desktop, with a card layout 
 - Both layouts should show same data, just different presentation
 
 ### References
-- PRD: /specs/features/shipment-overview/prd.md (Use Case 1)
+- PRD: /specs/shipment-overview/prd.md (Use Case 1)
 - Design: /design/hi-fi/shipment-overview/
 - User Testing: /discovery/market-research/insights.md (85% prefer dense view)
 

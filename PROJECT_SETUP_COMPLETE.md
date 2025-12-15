@@ -127,7 +127,7 @@ The `/po-framework/` directory already existed with comprehensive documentation 
 1. **Generators** - Scripts in `/tooling/generators/` (documented but not yet coded)
 2. **Validators** - Scripts in `/tooling/validators/` (documented but not yet coded)
 3. **Pipelines** - CI/CD workflows in `/tooling/pipelines/` (documented but not yet coded)
-4. **First Feature** - No features in `/specs/features/` yet (ready to create)
+4. **First Feature** - No features in `/specs/` yet (ready to create)
 
 ---
 
@@ -167,14 +167,14 @@ Use the framework to create your first feature:
 **Manual Approach (Generator not yet implemented):**
 ```bash
 # Create feature folder
-mkdir -p specs/features/shipment-overview
+mkdir -p specs/shipment-overview
 
 # Copy templates from framework
 cp po-framework/product-po-automation-spec/stage1-prd/template.md \
-   specs/features/shipment-overview/prd.md
+   specs/shipment-overview/prd.md
 
 cp po-framework/product-po-automation-spec/stage2-usm/template.md \
-   specs/features/shipment-overview/usm.md
+   specs/shipment-overview/usm.md
 
 # Repeat for usl.csv, usd.csv, uat.csv
 ```
@@ -226,7 +226,7 @@ Create a complete example feature to demonstrate the workflow:
 
 ### For QA Engineers
 - **Testing Guide:** `/qa/README.md`
-- **UAT Execution:** See feature-specific `/specs/features/{feature}/uat.csv`
+- **UAT Execution:** See feature-specific `/specs/{feature}/uat.csv`
 
 ### For DevOps/Automation
 - **Tooling Overview:** `/tooling/README.md`

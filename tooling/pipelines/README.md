@@ -33,7 +33,7 @@ Validates specs on pull requests.
 
 **Triggers:**
 - Pull request to `main`
-- Changes in `specs/features/**`
+- Changes in `specs/**`
 
 **Jobs:**
 1. Checkout code
@@ -47,7 +47,7 @@ name: Validate Specs
 on:
   pull_request:
     paths:
-      - 'specs/features/**'
+      - 'specs/**'
 
 jobs:
   validate:
@@ -197,12 +197,12 @@ echo "Running pre-commit validation..."
 
 # Validate staged spec files
 for file in $(git diff --cached --name-only); do
-  if [[ $file == specs/features/*/prd.md ]]; then
+  if [[ $file == specs/*/prd.md ]]; then
     echo "Validating PRD: $file"
     ./tooling/validators/validate-prd.js "$file" || exit 1
   fi
 
-  if [[ $file == specs/features/*/usl.csv ]]; then
+  if [[ $file == specs/*/usl.csv ]]; then
     echo "Validating USL: $file"
     ./tooling/validators/validate-usl.js "$file" || exit 1
   fi
@@ -233,7 +233,7 @@ cd ../validators
 
 failed=0
 
-for feature in ../../specs/features/*/; do
+for feature in ../../specs/*/; do
   echo "Validating feature: $(basename $feature)"
   ./validate-quality-gate.js "$feature" || failed=1
 done

@@ -39,7 +39,7 @@ cd tooling/generators
 ```
 
 **What it does:**
-1. Creates `/specs/features/feature-name/` folder
+1. Creates `/specs/feature-name/` folder
 2. Copies templates from `/po-framework/product-po-automation-spec/`
 3. Renames files: `template.md` → `prd.md`, etc.
 4. Assigns next available IDs (PRD-XXX, USM-XXX, etc.)
@@ -51,7 +51,7 @@ cd tooling/generators
 $ ./new-feature.sh booking-flow
 
 Creating new feature: booking-flow
-✓ Created /specs/features/booking-flow/
+✓ Created /specs/booking-flow/
 ✓ Copied PRD template → prd.md (assigned ID: PRD-002)
 ✓ Copied USM template → usm.md (assigned ID: USM-002)
 ✓ Copied USL template → usl.csv
@@ -61,7 +61,7 @@ Creating new feature: booking-flow
 ✓ Allocated story IDs: ST-009 to ST-XXX
 
 Next steps:
-1. Edit /specs/features/booking-flow/prd.md
+1. Edit /specs/booking-flow/prd.md
 2. Validate with: cd ../validators && ./validate-prd.js
 ```
 
@@ -83,13 +83,13 @@ validators/
 **Usage - Single Stage:**
 ```bash
 cd tooling/validators
-./validate-prd.js ../../specs/features/shipment-overview/prd.md
+./validate-prd.js ../../specs/shipment-overview/prd.md
 ```
 
 **Usage - All Stages:**
 ```bash
 cd tooling/validators
-./validate-quality-gate.js ../../specs/features/shipment-overview/
+./validate-quality-gate.js ../../specs/shipment-overview/
 ```
 
 **What it validates:**
@@ -135,9 +135,9 @@ cd tooling/validators
 
 **Example Output:**
 ```bash
-$ ./validate-prd.js ../../specs/features/shipment-overview/prd.md
+$ ./validate-prd.js ../../specs/shipment-overview/prd.md
 
-Validating: /specs/features/shipment-overview/prd.md
+Validating: /specs/shipment-overview/prd.md
 
 ✓ ID format correct: PRD-001
 ✓ All mandatory sections present
@@ -178,7 +178,7 @@ name: Validate Specs
 on:
   pull_request:
     paths:
-      - 'specs/features/**'
+      - 'specs/**'
 
 jobs:
   validate:
@@ -189,7 +189,7 @@ jobs:
         run: |
           cd tooling/validators
           for file in $(git diff --name-only origin/main); do
-            if [[ $file == specs/features/*/prd.md ]]; then
+            if [[ $file == specs/*/prd.md ]]; then
               ./validate-prd.js ../../$file
             fi
           done
@@ -201,7 +201,7 @@ jobs:
 # Install: ln -s ../../tooling/pipelines/scripts/pre-commit-hook.sh .git/hooks/pre-commit
 
 # Validate staged spec files
-for file in $(git diff --cached --name-only | grep "specs/features/"); do
+for file in $(git diff --cached --name-only | grep "specs/"); do
   if [[ $file == *.md ]]; then
     ./tooling/validators/validate-prd.js "$file" || exit 1
   elif [[ $file == *.csv ]]; then
@@ -222,13 +222,13 @@ cd tooling/generators
 ### Validate PRD
 ```bash
 cd tooling/validators
-./validate-prd.js ../../specs/features/<feature-name>/prd.md
+./validate-prd.js ../../specs/<feature-name>/prd.md
 ```
 
 ### Validate All Stages
 ```bash
 cd tooling/validators
-./validate-quality-gate.js ../../specs/features/<feature-name>/
+./validate-quality-gate.js ../../specs/<feature-name>/
 ```
 
 ### Run Pre-commit Hook
@@ -337,10 +337,10 @@ process.exit(passed ? 0 : 1);
 ./new-feature.sh test-feature
 
 # Verify structure
-ls ../../specs/features/test-feature/
+ls ../../specs/test-feature/
 
 # Clean up
-rm -rf ../../specs/features/test-feature/
+rm -rf ../../specs/test-feature/
 ```
 
 ### Test Validators

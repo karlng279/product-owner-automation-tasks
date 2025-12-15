@@ -6,13 +6,13 @@ This directory contains concrete product specifications following the PO Automat
 
 ```
 specs/
-├── features/               # One folder per feature
-│   ├── {feature-name}/
-│   │   ├── prd.md          # Stage 1: Product Requirements Document
-│   │   ├── usm.md          # Stage 2: User Story Map
-│   │   ├── usl.csv         # Stage 3: User Story List
-│   │   ├── usd.csv         # Stage 4: User Story Details
-│   │   └── uat.csv         # Stage 5: UAT Test Cases
+├── {feature-name}/         # One folder per feature
+│   ├── prd.md              # Stage 1: Product Requirements Document
+│   ├── usm.md              # Stage 2: User Story Map
+│   ├── usl.csv             # Stage 3: User Story List
+│   ├── usd.csv             # Stage 4: User Story Details
+│   └── uat.csv             # Stage 5: UAT Test Cases
+├── {another-feature}/
 │   └── ...
 └── index.md                # Table of contents for all features
 ```
@@ -114,13 +114,13 @@ cd tooling/generators
 ```
 
 This will:
-1. Create `/specs/features/feature-name/` folder
+1. Create `/specs/feature-name/` folder
 2. Copy templates from `/po-framework/`
 3. Set up proper IDs
 4. Update `/specs/index.md`
 
 ### Option 2: Manual Creation
-1. Create folder: `mkdir specs/features/feature-name`
+1. Create folder: `mkdir specs/feature-name`
 2. Copy templates from `/po-framework/product-po-automation-spec/`
 3. Rename to: `prd.md`, `usm.md`, `usl.csv`, `usd.csv`, `uat.csv`
 4. Assign next available IDs (check existing features)
@@ -144,7 +144,7 @@ Before moving to the next stage, validate with quality gates:
 
 ```bash
 cd tooling/validators
-./validate-quality-gate.js ../specs/features/feature-name/
+./validate-quality-gate.js ../specs/feature-name/
 ```
 
 ### PRD → USM

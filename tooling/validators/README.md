@@ -14,7 +14,7 @@ Validates PRD structure and content.
 
 **Example:**
 ```bash
-./validate-prd.js ../../specs/features/shipment-overview/prd.md
+./validate-prd.js ../../specs/shipment-overview/prd.md
 ```
 
 **Checks:**
@@ -111,7 +111,7 @@ Runs all validators for a feature.
 
 **Example:**
 ```bash
-./validate-quality-gate.js ../../specs/features/shipment-overview/
+./validate-quality-gate.js ../../specs/shipment-overview/
 ```
 
 **What it does:**
@@ -198,7 +198,7 @@ name: Validate Specs
 on:
   pull_request:
     paths:
-      - 'specs/features/**'
+      - 'specs/**'
 
 jobs:
   validate:
@@ -208,13 +208,13 @@ jobs:
       - name: Validate PRD
         run: |
           cd tooling/validators
-          ./validate-prd.js ../../specs/features/*/prd.md
+          ./validate-prd.js ../../specs/*/prd.md
 ```
 
 **Example: Pre-commit Hook**
 ```bash
 #!/bin/bash
-for file in $(git diff --cached --name-only | grep "specs/features/.*\.md"); do
+for file in $(git diff --cached --name-only | grep "specs/.*\.md"); do
   ./tooling/validators/validate-prd.js "$file" || exit 1
 done
 ```
@@ -243,4 +243,4 @@ See: `/po-framework/product-po-automation-spec/stage1-prd/quality-gate.md`
 
 - **Framework Rules:** `/po-framework/product-po-automation-spec/`
 - **Generators:** `/tooling/generators/` (create artifacts to validate)
-- **Specs:** `/specs/features/` (artifacts being validated)
+- **Specs:** `/specs/` (artifacts being validated)

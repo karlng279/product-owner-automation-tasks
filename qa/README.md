@@ -38,7 +38,7 @@ test-runs/
 
 **Naming Convention:**
 - Folder: `YYYY-MM-DD-sprint-{number}` or `YYYY-MM-DD-{release-name}`
-- Files: Copy UAT CSVs from `/specs/features/{feature}/uat.csv`
+- Files: Copy UAT CSVs from `/specs/{feature}/uat.csv`
 
 **test-summary.md Template:**
 ```markdown
@@ -179,7 +179,7 @@ smoke,ST-001,TC-001,"Open Shipment Overview",...
    └─> Feature ready for testing
 
 2. Copy UAT to Test Run
-   └─> cp /specs/features/{feature}/uat.csv /qa/test-runs/{date}/
+   └─> cp /specs/{feature}/uat.csv /qa/test-runs/{date}/
 
 3. Execute Tests
    └─> Update test_result column: Pass | Failed | Not Testable
@@ -286,6 +286,6 @@ For automated testing:
 
 ## Related Directories
 
-- `/specs/features/{feature}/uat.csv` - Source UAT test cases
-- `/specs/features/{feature}/usd.csv` - Acceptance criteria being tested
+- `/specs/{feature}/uat.csv` - Source UAT test cases
+- `/specs/{feature}/usd.csv` - Acceptance criteria being tested
 - `/tooling/` - Test automation tools and scripts

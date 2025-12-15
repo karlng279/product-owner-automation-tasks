@@ -35,17 +35,16 @@ This repository contains the complete product lifecycle workflow - from discover
 │   ├── BACKLOG.md              # Prioritized feature backlog
 │   └── TASK_MANAGEMENT_SOLO.md # Task management methodology
 │
-├── po-framework/               # PO automation templates (PRD→USM→USL→USD→UAT)
-├── resources/                  # Domain knowledge, tech stack, design system
-├── discovery/                  # Market research, user interviews, competitor analysis
+├── po-framework/               # PO automation templates (PRD→USM→USL→USD→UAT) + PM playbooks
+├── discovery/                  # Market research, user interviews, competitor analysis, domain knowledge, business models
 ├── specs/                      # Feature specifications (PRD → UAT)
-├── design/                     # Wireframes, mockups, design decisions
-├── codebase/                   # Implementation (web app, API, infrastructure)
+├── design/                     # Wireframes, mockups, design decisions, design system
+├── codebase/                   # Implementation (web app, API, infrastructure) + tech stack
 ├── qa/                         # Test cases, bug reports, test runs
 └── tooling/                    # Generators, validators, CI/CD scripts
 ```
 
-**Sample Project:** The [specs/features/one-api-portal-mvp](specs/features/one-api-portal-mvp) folder contains a complete example of the framework in action.
+**Sample Project:** The [specs/one-api-portal-mvp](specs/one-api-portal-mvp) folder contains a complete example of the framework in action.
 
 **Full structure:** See [PROJECT_SETUP_COMPLETE.md](PROJECT_SETUP_COMPLETE.md)
 
@@ -82,11 +81,11 @@ Discovery → PRD → USM → USL → USD → UAT → Design → Build → Test 
 
 ### 2. Define Feature (PRD)
 - Create PRD following framework templates
-- Store in `specs/features/{feature-name}/prd.md`
+- Store in `specs/{feature-name}/prd.md`
 
 ### 3. Map & Detail (USM → USL → USD → UAT)
 - Follow 5-stage workflow using templates
-- All artifacts in `specs/features/{feature-name}/`
+- All artifacts in `specs/{feature-name}/`
 
 ### 4. Design
 - Create wireframes and mockups
@@ -114,7 +113,7 @@ Follow this step-by-step guide to spec your first feature:
 
 #### Step 1: Study the Sample Project (5 minutes)
 
-Navigate to [specs/features/one-api-portal-mvp](specs/features/one-api-portal-mvp) and review:
+Navigate to [specs/one-api-portal-mvp](specs/one-api-portal-mvp) and review:
 - `prd.md` - See how product requirements are structured
 - `usm.md` - Understand the user story mapping format
 - `usl.csv` - Review how stories are prioritized (MoSCoW)
@@ -134,10 +133,10 @@ Open [po-framework/](po-framework/) and read:
 
 ```bash
 # Create a new feature folder
-mkdir -p specs/features/your-feature-name
+mkdir -p specs/your-feature-name
 
 # Navigate to the folder
-cd specs/features/your-feature-name
+cd specs/your-feature-name
 ```
 
 #### Step 4: Write Your PRD (5 minutes)
@@ -181,8 +180,8 @@ Create `prd.md` using this structure:
 
 ```bash
 # 1. Create feature folder
-mkdir -p specs/features/my-new-feature
-cd specs/features/my-new-feature
+mkdir -p specs/my-new-feature
+cd specs/my-new-feature
 
 # 2. Write PRD (Stage 1)
 # Create prd.md - Define the WHY and WHAT
@@ -215,7 +214,7 @@ cd specs/features/my-new-feature
 
 ```bash
 # 1. Navigate to existing feature
-cd specs/features/existing-feature
+cd specs/existing-feature
 
 # 2. Update USM
 # Add new stories to usm.md under relevant activities
@@ -268,8 +267,10 @@ vim Task-management/BACKLOG.md
 - **Market Research:** [discovery/market-research/](discovery/market-research/)
 
 ### For Development
-- **Tech Stack:** [resources/tech-stack/](resources/tech-stack/)
-- **Domain Knowledge:** [resources/domain-knowledge/](resources/domain-knowledge/)
+- **Tech Stack:** [codebase/tech-stack/](codebase/tech-stack/)
+- **Domain Knowledge:** [discovery/domain-knowledge/](discovery/domain-knowledge/)
+- **Design System:** [design/design-system/](design/design-system/)
+- **PM Playbooks:** [po-framework/pm-playbooks/](po-framework/pm-playbooks/)
 - **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---

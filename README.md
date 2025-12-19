@@ -30,35 +30,38 @@ This repository contains the complete product lifecycle workflow - from discover
 
 ```
 /
-├── Task-management/            # Solo PM workflow tracking
+├── task-management/            # Solo PM workflow tracking
 │   ├── NOW.md                  # Current work focus
 │   ├── BACKLOG.md              # Prioritized feature backlog
 │   └── TASK_MANAGEMENT_SOLO.md # Task management methodology
 │
 ├── po-framework/               # PO automation templates (PRD→USM→USL→USD→UAT) + PM playbooks
-├── discovery/                  # Market research, user interviews, competitor analysis, domain knowledge, business models
-├── specs/                      # Feature specifications (PRD → UAT)
-├── design/                     # Wireframes, mockups, design decisions, design system
-├── codebase/                   # Implementation (web app, API, infrastructure) + tech stack
-├── qa/                         # Test cases, bug reports, test runs
-└── tooling/                    # Generators, validators, CI/CD scripts
+├── design-framework/           # Complete text-based design system (Wireframes → Components → Interactions)
+├── codebase-framework/         # Development framework templates (architecture, coding standards, testing)
+├── features/                   # Feature specifications (PRD → UAT) - formerly specs/
+└── archive/                    # Historical artifacts and old folder structures
+    ├── old-discovery/          # Market research, competitor analysis, domain knowledge
+    ├── old-design/             # Legacy wireframes and mockups
+    ├── old-codebase/           # Legacy implementation artifacts
+    └── old-qa/                 # Legacy test cases and bug reports
 ```
 
-**Sample Project:** The [specs/one-api-portal-mvp](specs/one-api-portal-mvp) folder contains a complete example of the framework in action.
+**Sample Project:** The [features/one-api-portal-mvp](features/one-api-portal-mvp) folder contains a complete example of the framework in action.
 
-**Full structure:** See [PROJECT_SETUP_COMPLETE.md](PROJECT_SETUP_COMPLETE.md)
+**Full structure:** See [archive/PROJECT_SETUP_COMPLETE.md](archive/PROJECT_SETUP_COMPLETE.md)
 
 ---
 
-## 📋 PO Automation Workflow
+## 📋 Complete Product Development Workflow
 
-The framework uses a structured 5-stage workflow for feature development:
+The framework uses a structured end-to-end workflow for feature development:
 
 ```
-Discovery → PRD → USM → USL → USD → UAT → Design → Build → Test → Deploy
+PRD → USM → USL → USD → UAT → Wireframes → Component Specs → Interactions → Build → Test → Deploy
+├─────── PO Framework ──────┤   └────────────── Design Framework ────────────┘
 ```
 
-### The 5 Stages
+### PO Framework - The 5 Stages
 
 | Stage | Artifact | Purpose | Format |
 |-------|----------|---------|--------|
@@ -68,32 +71,41 @@ Discovery → PRD → USM → USL → USD → UAT → Design → Build → Test 
 | 4 | **USD** | User Story Details - Acceptance criteria | CSV |
 | 5 | **UAT** | User Acceptance Tests - BDD scenarios (Given/When/Then) | CSV |
 
-**Templates & Rules:** [po-framework/product-po-automation-spec/](po-framework/product-po-automation-spec/)
+**Templates & Rules:** [po-framework/](po-framework/)
+
+### Design Framework - The 3 Stages
+
+| Stage | Artifact | Purpose | Format |
+|-------|----------|---------|--------|
+| 1 | **Wireframes (WF-XXX)** | Text descriptions + ASCII wireframes for layout | Markdown |
+| 2 | **Component Specs (COMP-XXX)** | ShadCN components + Tanstack Table configurations | Markdown |
+| 3 | **Interactions (INT-XXX)** | ASCII state diagrams showing behavior and flows | Markdown |
+
+**Design System:** [design-framework/](design-framework/)
 **Contributing Guide:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ---
 
 ## 🛠️ Development Workflow
 
-### 1. Discovery & Research
-- Analyze competitors, interview users, define problems
-- Document in [discovery/](discovery/)
-
-### 2. Define Feature (PRD)
+### 1. Define Feature (PRD)
 - Create PRD following framework templates
-- Store in `specs/{feature-name}/prd.md`
+- Store in `features/{feature-name}/prd.md`
 
-### 3. Map & Detail (USM → USL → USD → UAT)
-- Follow 5-stage workflow using templates
-- All artifacts in `specs/{feature-name}/`
+### 2. Map & Detail (USM → USL → USD → UAT)
+- Follow 5-stage PO workflow using templates
+- All artifacts in `features/{feature-name}/`
 
-### 4. Design
-- Create wireframes and mockups
-- Store in [design/](design/) and link in PRD
+### 3. Design Specifications (Wireframes → Components → Interactions)
+- Create wireframes from acceptance criteria (USD)
+- Define component specifications using ShadCN UI
+- Document interactions with ASCII state diagrams
+- Follow [design-framework/](design-framework/) templates
 
-### 5. Build & Test
-- Implement in [codebase/](codebase/)
-- Execute UAT, document results in [qa/](qa/)
+### 4. Build & Test
+- Implement based on design specifications
+- Execute UAT scenarios
+- Track progress in task-management/
 
 ---
 
@@ -113,7 +125,7 @@ Follow this step-by-step guide to spec your first feature:
 
 #### Step 1: Study the Sample Project (5 minutes)
 
-Navigate to [specs/one-api-portal-mvp](specs/one-api-portal-mvp) and review:
+Navigate to [features/one-api-portal-mvp](features/one-api-portal-mvp) and review:
 - `prd.md` - See how product requirements are structured
 - `usm.md` - Understand the user story mapping format
 - `usl.csv` - Review how stories are prioritized (MoSCoW)
@@ -133,10 +145,10 @@ Open [po-framework/](po-framework/) and read:
 
 ```bash
 # Create a new feature folder
-mkdir -p specs/your-feature-name
+mkdir -p features/your-feature-name
 
 # Navigate to the folder
-cd specs/your-feature-name
+cd features/your-feature-name
 ```
 
 #### Step 4: Write Your PRD (5 minutes)
@@ -180,8 +192,8 @@ Create `prd.md` using this structure:
 
 ```bash
 # 1. Create feature folder
-mkdir -p specs/my-new-feature
-cd specs/my-new-feature
+mkdir -p features/my-new-feature
+cd features/my-new-feature
 
 # 2. Write PRD (Stage 1)
 # Create prd.md - Define the WHY and WHAT
@@ -214,7 +226,7 @@ cd specs/my-new-feature
 
 ```bash
 # 1. Navigate to existing feature
-cd specs/existing-feature
+cd features/existing-feature
 
 # 2. Update USM
 # Add new stories to usm.md under relevant activities
@@ -239,10 +251,10 @@ cd specs/existing-feature
 
 ```bash
 # 1. Update NOW.md with current focus
-vim Task-management/NOW.md
+vim task-management/NOW.md
 
 # 2. Review and reprioritize BACKLOG.md
-vim Task-management/BACKLOG.md
+vim task-management/BACKLOG.md
 
 # 3. Move completed items from NOW to DONE
 # Move next priority items from BACKLOG to NOW
@@ -255,23 +267,30 @@ vim Task-management/BACKLOG.md
 ## 📖 Documentation
 
 ### For Product Management
-- **Current Focus:** [Task-management/NOW.md](Task-management/NOW.md)
-- **Backlog:** [Task-management/BACKLOG.md](Task-management/BACKLOG.md)
-- **Task Management Guide:** [Task-management/TASK_MANAGEMENT_SOLO.md](Task-management/TASK_MANAGEMENT_SOLO.md)
-- **Feature Index:** [specs/index.md](specs/index.md)
-- **Framework:** [po-framework/README.md](po-framework/README.md)
+- **Current Focus:** [task-management/NOW.md](task-management/NOW.md)
+- **Backlog:** [task-management/BACKLOG.md](task-management/BACKLOG.md)
+- **Task Management Guide:** [task-management/TASK_MANAGEMENT_SOLO.md](task-management/TASK_MANAGEMENT_SOLO.md)
+- **PO Framework:** [po-framework/README.md](po-framework/README.md)
+- **PM Playbooks:** [po-framework/pm-playbooks/](po-framework/pm-playbooks/)
 
-### For Research & Discovery
-- **Competitor Analysis:** [discovery/competitor-analysis/](discovery/competitor-analysis/)
-- **Business Model:** [discovery/business-model/](discovery/business-model/)
-- **Market Research:** [discovery/market-research/](discovery/market-research/)
+### For Design
+- **Design Framework:** [design-framework/README.md](design-framework/README.md)
+- **Design Workflow:** [design-framework/design-workflow.md](design-framework/design-workflow.md)
+- **Design Rules:** [design-framework/design-rules/](design-framework/design-rules/)
+- **Wireframes:** [design-framework/stage1-wireframes/](design-framework/stage1-wireframes/)
+- **Component Specs:** [design-framework/stage2-component-specs/](design-framework/stage2-component-specs/)
+- **Interactions:** [design-framework/stage3-interactions/](design-framework/stage3-interactions/)
 
 ### For Development
-- **Tech Stack:** [codebase/tech-stack/](codebase/tech-stack/)
-- **Domain Knowledge:** [discovery/domain-knowledge/](discovery/domain-knowledge/)
-- **Design System:** [design/design-system/](design/design-system/)
-- **PM Playbooks:** [po-framework/pm-playbooks/](po-framework/pm-playbooks/)
+- **Codebase Framework:** [codebase-framework/README.md](codebase-framework/README.md)
+- **Features Index:** [features/](features/)
 - **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md)
+
+### For Reference & History
+- **Old Discovery:** [archive/old-discovery/](archive/old-discovery/)
+- **Old Design:** [archive/old-design/](archive/old-design/)
+- **Old Codebase:** [archive/old-codebase/](archive/old-codebase/)
+- **Old QA:** [archive/old-qa/](archive/old-qa/)
 
 ---
 
@@ -356,47 +375,57 @@ Before considering a feature spec complete, verify:
 
 ---
 
-## 🗺️ Roadmap & Next Plans
+## 🗺️ Roadmap & Status
 
-### Current Focus: Business & Product Specification ✅
+### Completed Frameworks ✅
 
-The framework currently supports the **product specification phase**:
-- ✅ Discovery & Research
+The repository now includes complete frameworks for:
+
+**1. Product Specification (PO Framework) ✅**
 - ✅ 5-Stage Specification Workflow (PRD → USM → USL → USD → UAT)
 - ✅ Task Management System
-- ✅ Sample Project (ONE API Portal MVP)
+- ✅ PM Playbooks
+- ✅ Templates & Quality Gates
+- **Location:** [po-framework/](po-framework/)
 
-### Upcoming Features: Design, Development & Release
+**2. Design Specification (Design Framework) ✅**
+- ✅ 3-Stage Design Workflow (Wireframes → Components → Interactions)
+- ✅ Text-based design system (no visual tools required)
+- ✅ ShadCN UI component catalog
+- ✅ Tanstack Table reference
+- ✅ Design rules (color, spacing, typography, accessibility)
+- ✅ Reusable templates (forms, lists, dashboards, modals)
+- ✅ Common UI patterns
+- ✅ Quality gates for each stage
+- **Location:** [design-framework/](design-framework/)
 
-The following capabilities are planned but **not yet implemented**:
+### In Development 🚧
 
-#### 1. Design Phase
-- [ ] Design system templates
-- [ ] Wireframe/mockup guidelines
-- [ ] UI/UX specification formats
-- [ ] Design handoff documentation
-- **Location:** [design/](design/) folder
-
-#### 2. Codebase & Development
+**3. Codebase Framework (Placeholder)**
 - [ ] Technical architecture templates
 - [ ] Code structure guidelines
 - [ ] Development workflow integration
-- [ ] Implementation tracking
-- **Location:** [codebase/](codebase/) folder
+- [ ] Testing standards
+- **Location:** [codebase-framework/](codebase-framework/)
 
-#### 3. QA & Testing
+### Future Enhancements 📋
+
+**4. Automation & Tooling**
+- [ ] Spec validators
+- [ ] Template generators
+- [ ] CLI tools for workflow automation
+- [ ] CI/CD integration
+
+**5. QA & Testing**
 - [ ] Test execution tracking
 - [ ] Bug reporting templates
-- [ ] Quality metrics
-- **Location:** [qa/](qa/) folder
+- [ ] Quality metrics dashboard
 
-#### 4. Release Management
+**6. Release Management**
 - [ ] Release planning templates
 - [ ] Deployment checklists
-- [ ] Release notes formats
+- [ ] Release notes generation
 - [ ] Post-release retrospectives
-
-**Note:** This framework currently focuses on the **business and product specification** aspects of product management. Design, development, and release workflows will be added in future iterations.
 
 ---
 

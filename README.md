@@ -38,17 +38,11 @@ This repository contains the complete product lifecycle workflow - from discover
 ├── po-framework/               # PO automation templates (PRD→USM→USL→USD→UAT) + PM playbooks
 ├── design-framework/           # Complete text-based design system (Wireframes → Components → Interactions)
 ├── codebase-framework/         # Development framework templates (architecture, coding standards, testing)
-├── features/                   # Feature specifications (PRD → UAT) - formerly specs/
-└── archive/                    # Historical artifacts and old folder structures
-    ├── old-discovery/          # Market research, competitor analysis, domain knowledge
-    ├── old-design/             # Legacy wireframes and mockups
-    ├── old-codebase/           # Legacy implementation artifacts
-    └── old-qa/                 # Legacy test cases and bug reports
+├── features/                   # Feature specifications (PRD → UAT)
+└── archive/                    # Backup files
 ```
 
 **Sample Project:** The [features/one-api-portal-mvp](features/one-api-portal-mvp) folder contains a complete example of the framework in action.
-
-**Full structure:** See [archive/PROJECT_SETUP_COMPLETE.md](archive/PROJECT_SETUP_COMPLETE.md)
 
 ---
 
@@ -285,12 +279,6 @@ vim task-management/BACKLOG.md
 - **Codebase Framework:** [codebase-framework/README.md](codebase-framework/README.md)
 - **Features Index:** [features/](features/)
 - **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md)
-
-### For Reference & History
-- **Old Discovery:** [archive/old-discovery/](archive/old-discovery/)
-- **Old Design:** [archive/old-design/](archive/old-design/)
-- **Old Codebase:** [archive/old-codebase/](archive/old-codebase/)
-- **Old QA:** [archive/old-qa/](archive/old-qa/)
 
 ---
 

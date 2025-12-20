@@ -112,7 +112,26 @@ PRD → USM → USL → USD → UAT → Wireframes → Components → Interactio
 | 3 | **Interactions (INT-XXX)** | ASCII state diagrams showing behavior and flows | Markdown |
 
 **Design System:** [design-framework/](design-framework/)
-**Contributing Guide:** [CONTRIBUTING.md](CONTRIBUTING.md)
+
+### Codebase Framework - Implementation
+
+The codebase framework provides complete implementation guides for building working Next.js applications from your specs:
+
+**Core Documentation:**
+- **Framework Integration Guide** - How PO/Design specs map to code ([FRAMEWORK_INTEGRATION.md](codebase-framework/FRAMEWORK_INTEGRATION.md))
+- **Quick Start Tutorial** - 45-60 min from zero to deployed app ([QUICK_START.md](codebase-framework/QUICK_START.md))
+
+**Implementation Guides:**
+- **Project Structure** - Next.js 14 App Router organization ([project-structure/](codebase-framework/project-structure/))
+- **Component Patterns** - ShadCN UI, forms, tables, layouts ([component-patterns/](codebase-framework/component-patterns/))
+- **State Management** - React Context + useState patterns ([state-management/](codebase-framework/state-management/))
+- **API Patterns** - Next.js routes + dummy JSON data ([api-patterns/](codebase-framework/api-patterns/))
+
+**Tech Stack:** Next.js 14, TailwindCSS, ShadCN UI, TanStack Table, React Hook Form + Zod
+
+**Philosophy:** Build working frontends with dummy data first, validate UX with stakeholders, then invest in backend infrastructure.
+
+**See:** [codebase-framework/README.md](codebase-framework/README.md) for complete overview
 
 ---
 
@@ -157,101 +176,21 @@ PRD → USM → USL → USD → UAT → Wireframes → Components → Interactio
 
 ## 🚀 Getting Started
 
-### Prerequisites
+**New to the framework?** Start here:
 
-Before using this framework, you should have:
-- A text editor or IDE (VS Code, Sublime, etc.)
-- Basic understanding of product management concepts
-- Familiarity with user stories and acceptance criteria
-- CSV-compatible spreadsheet tool (Excel, Google Sheets, Numbers)
+📖 **[Complete Getting Started Guide →](GETTING_STARTED.md)**
 
-### Quick Start: Create Your First Feature Spec in 15 Minutes
+The guide includes:
+- **Quick Start Tutorial** - Create your first feature spec in 15 minutes
+- **Role-Based Paths** - Tailored guides for PMs, Designers, Developers, Solo Founders
+- **Learning Paths** - Choose between complete end-to-end or quick implementation
+- **Prerequisites & Setup** - Everything you need to get started
 
-Follow this step-by-step guide to spec your first feature:
-
-#### Step 1: Study the Sample Project (5 minutes)
-
-Navigate to [features/one-api-portal-mvp](features/one-api-portal-mvp) and review:
-- `prd.md` - See how product requirements are structured
-- `usm.md` - Understand the user story mapping format
-- `usl.csv` - Review how stories are prioritized (MoSCoW)
-- `usd.csv` - See detailed acceptance criteria format
-- `uat.csv` - Understand BDD test scenarios (Given/When/Then)
-
-**Key Learning:** Notice how each stage builds on the previous one, adding more detail as you progress.
-
-#### Step 2: Review Framework Templates (3 minutes)
-
-Open [po-framework/](po-framework/) and read:
-- `README.md` - Framework overview
-- `framework-structure.md` - Detailed structure explanation
-- Each `stage{X}-{name}/rules.md` - Rules and validation criteria for each stage
-
-#### Step 3: Create Your Feature Folder (2 minutes)
-
-```bash
-# Create a new feature folder
-mkdir -p features/your-feature-name
-
-# Navigate to the folder
-cd features/your-feature-name
-```
-
-#### Step 4: Write Your PRD (5 minutes)
-
-Create `prd.md` using this structure:
-
-```markdown
-# [Feature Name] - Product Requirements Document
-
-## Problem Statement
-[What problem are you solving? Who has this problem?]
-
-## Goals & Success Metrics
-- Goal 1: [Specific, measurable goal]
-- Metric: [How will you measure success?]
-
-## Target Users
-- [Primary user persona]
-- [Secondary user persona]
-
-## User Stories (High-Level)
-1. As a [user type], I want to [action], so that [benefit]
-2. As a [user type], I want to [action], so that [benefit]
-
-## Out of Scope
-- [What you're NOT building in this version]
-
-## Design Resources
-- [Link to wireframes/mockups if available]
-```
-
-**Done!** You now have a PRD. Next, you'll break it down into detailed user stories.
-
-#### Step 5: Learn the Codebase Framework (Optional - 10 minutes)
-
-If you want to understand how to **implement** your feature specs as working code:
-
-1. **Read the Quick Start:** [codebase-framework/QUICK_START.md](codebase-framework/QUICK_START.md)
-   - 45-60 minute tutorial from zero to deployed Next.js app
-   - Covers project setup, components, dummy data, and deployment
-
-2. **Review the Tech Stack:** See the "Tech Stack" section above
-   - Next.js 14, ShadCN UI, TanStack Table
-   - React Context for state, dummy JSON for data
-
-3. **Check the Integration Guide:** [codebase-framework/FRAMEWORK_INTEGRATION.md](codebase-framework/FRAMEWORK_INTEGRATION.md)
-   - Shows how USD specs → code features
-   - Shows how wireframes → JSX structure
-   - Shows how component specs → ShadCN usage
-   - Complete end-to-end example
-
-**When to Use:**
-- After completing your USD and design specs
-- When you're ready to build a working prototype
-- When you want to validate UX with stakeholders before backend investment
-
-**Output:** A deployed Next.js application on Vercel with dummy data (no backend needed)
+**Quick Links:**
+- 👔 Product Managers: Start with [po-framework/](po-framework/)
+- 🎨 Designers: Start with [design-framework/](design-framework/)
+- 👨‍💻 Developers: Start with [codebase-framework/QUICK_START.md](codebase-framework/QUICK_START.md)
+- 📚 Sample Project: [features/one-api-portal-mvp](features/one-api-portal-mvp)
 
 ---
 

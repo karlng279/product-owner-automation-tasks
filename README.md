@@ -24,6 +24,42 @@ A complete product lifecycle management system with:
 
 ---
 
+## 🛠️ Tech Stack
+
+This framework uses a modern, battle-tested stack designed for rapid MVP development:
+
+**Frontend:**
+- **Framework:** Next.js 14 with App Router
+- **Styling:** TailwindCSS + ShadCN UI components
+- **Tables:** TanStack Table (React Table)
+- **Forms:** React Hook Form + Zod validation
+- **Language:** TypeScript
+
+**State Management:**
+- React Context API + useState (zero external dependencies)
+- Native fetch with Next.js caching
+- URL state via Next.js router
+
+**Backend (Prototype Phase):**
+- **API:** Next.js API Routes
+- **Data:** Dummy JSON files (no database needed)
+- **Auth:** Skipped initially (add when ready)
+
+**Deployment:**
+- Vercel (recommended) or Netlify
+- Static site with API routes
+
+**Why This Stack?**
+- 🚀 Fast to deploy (< 1 hour from code to production)
+- 💰 Free hosting tier on Vercel
+- 🎨 Professional UI with ShadCN components
+- 📦 No backend infrastructure needed initially
+- 🔄 Easy to swap dummy data for real backend later
+
+**See:** [codebase-framework/](codebase-framework/) for complete implementation guides
+
+---
+
 ## 🏗️ Repository Structure
 
 This repository contains the complete product lifecycle workflow - from discovery to deployment.
@@ -51,8 +87,8 @@ This repository contains the complete product lifecycle workflow - from discover
 The framework uses a structured end-to-end workflow for feature development:
 
 ```
-PRD → USM → USL → USD → UAT → Wireframes → Component Specs → Interactions → Build → Test → Deploy
-├─────── PO Framework ──────┤   └────────────── Design Framework ────────────┘
+PRD → USM → USL → USD → UAT → Wireframes → Components → Interactions → Code → Test → Deploy
+├─────── PO Framework ──────┤   └──── Design Framework ────┘   └─── Codebase Framework ───┘
 ```
 
 ### PO Framework - The 5 Stages
@@ -96,9 +132,25 @@ PRD → USM → USL → USD → UAT → Wireframes → Component Specs → Inter
 - Document interactions with ASCII state diagrams
 - Follow [design-framework/](design-framework/) templates
 
-### 4. Build & Test
-- Implement based on design specifications
-- Execute UAT scenarios
+### 4. Code Implementation (Next.js + ShadCN + Dummy Data)
+- Follow the [45-60 minute Quick Start](codebase-framework/QUICK_START.md)
+- Set up Next.js 14 project with ShadCN UI components
+- Create dummy JSON data for rapid prototyping
+- Build pages and components from design specs
+- Implement API routes with Next.js
+- See [codebase-framework/](codebase-framework/) for complete guides
+
+**Tech Stack:**
+- Frontend: Next.js 14 (App Router), TailwindCSS, ShadCN UI, TanStack Table
+- Forms: React Hook Form + Zod validation
+- State: React Context + useState (zero external dependencies)
+- Backend: Next.js API routes + dummy JSON (no database needed)
+- Deployment: Vercel or Netlify
+
+### 5. Test & Deploy
+- Convert UAT scenarios to Playwright tests
+- Execute acceptance tests
+- Deploy to Vercel (15 minutes)
 - Track progress in task-management/
 
 ---
@@ -175,6 +227,31 @@ Create `prd.md` using this structure:
 ```
 
 **Done!** You now have a PRD. Next, you'll break it down into detailed user stories.
+
+#### Step 5: Learn the Codebase Framework (Optional - 10 minutes)
+
+If you want to understand how to **implement** your feature specs as working code:
+
+1. **Read the Quick Start:** [codebase-framework/QUICK_START.md](codebase-framework/QUICK_START.md)
+   - 45-60 minute tutorial from zero to deployed Next.js app
+   - Covers project setup, components, dummy data, and deployment
+
+2. **Review the Tech Stack:** See the "Tech Stack" section above
+   - Next.js 14, ShadCN UI, TanStack Table
+   - React Context for state, dummy JSON for data
+
+3. **Check the Integration Guide:** [codebase-framework/FRAMEWORK_INTEGRATION.md](codebase-framework/FRAMEWORK_INTEGRATION.md)
+   - Shows how USD specs → code features
+   - Shows how wireframes → JSX structure
+   - Shows how component specs → ShadCN usage
+   - Complete end-to-end example
+
+**When to Use:**
+- After completing your USD and design specs
+- When you're ready to build a working prototype
+- When you want to validate UX with stakeholders before backend investment
+
+**Output:** A deployed Next.js application on Vercel with dummy data (no backend needed)
 
 ---
 
@@ -276,7 +353,13 @@ vim task-management/BACKLOG.md
 - **Interactions:** [design-framework/stage3-interactions/](design-framework/stage3-interactions/)
 
 ### For Development
-- **Codebase Framework:** [codebase-framework/README.md](codebase-framework/README.md)
+- **Codebase Framework Overview:** [codebase-framework/README.md](codebase-framework/README.md)
+- **Quick Start (45-60 min):** [codebase-framework/QUICK_START.md](codebase-framework/QUICK_START.md)
+- **Framework Integration:** [codebase-framework/FRAMEWORK_INTEGRATION.md](codebase-framework/FRAMEWORK_INTEGRATION.md)
+- **Project Structure:** [codebase-framework/project-structure/](codebase-framework/project-structure/)
+- **Component Patterns:** [codebase-framework/component-patterns/](codebase-framework/component-patterns/)
+- **State Management:** [codebase-framework/state-management/](codebase-framework/state-management/)
+- **API Patterns:** [codebase-framework/api-patterns/](codebase-framework/api-patterns/)
 - **Features Index:** [features/](features/)
 - **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md)
 
@@ -319,6 +402,42 @@ For medium-sized features, expect ~4-7 hours total.
 
 ### Q: Should I write UATs before or after development?
 **A:** Before! UATs define "done" and guide development. They're your contract for what needs to work.
+
+### Q: How do I go from design specs to working code?
+**A:** Follow the [Codebase Framework Quick Start](codebase-framework/QUICK_START.md). It's a 45-60 minute tutorial that shows you how to:
+1. Set up a Next.js project with ShadCN UI
+2. Create dummy JSON data
+3. Build pages from wireframes
+4. Implement components from specs
+5. Deploy to Vercel
+
+The [Integration Guide](codebase-framework/FRAMEWORK_INTEGRATION.md) shows exact mappings from USD → wireframes → code.
+
+### Q: Do I need a backend/database to build working prototypes?
+**A:** No! The codebase framework uses **dummy JSON files** instead of a real database. This lets you:
+- Build and deploy working UIs without backend setup
+- Validate UX with stakeholders quickly
+- Swap for a real backend later when ready
+
+See [api-patterns/](codebase-framework/api-patterns/) for the dummy data strategy.
+
+### Q: What if I'm not a React developer?
+**A:** The framework is designed for learning. The documentation includes:
+- Complete code examples you can copy-paste
+- Step-by-step tutorials
+- Explanations of every pattern
+- Links to official docs for deeper learning
+
+Start with [QUICK_START.md](codebase-framework/QUICK_START.md) and follow along.
+
+### Q: Can I use a different tech stack?
+**A:** Yes, but you'll need to adapt the codebase-framework docs. The current stack (Next.js + ShadCN) is optimized for:
+- Fast deployment (Vercel)
+- Professional UI out of the box
+- Minimal setup
+- Free hosting
+
+If you use Vue/Angular/etc., the PO and Design frameworks still apply—just adapt the implementation guides.
 
 ---
 
@@ -387,13 +506,15 @@ The repository now includes complete frameworks for:
 - ✅ Quality gates for each stage
 - **Location:** [design-framework/](design-framework/)
 
-### In Development 🚧
-
-**3. Codebase Framework (Placeholder)**
-- [ ] Technical architecture templates
-- [ ] Code structure guidelines
-- [ ] Development workflow integration
-- [ ] Testing standards
+**3. Code Implementation (Codebase Framework) ✅**
+- ✅ Complete Next.js 14 project structure guidelines
+- ✅ ShadCN UI component patterns (forms, tables, layouts)
+- ✅ State management patterns (React Context + useState)
+- ✅ API patterns (Next.js routes + dummy JSON data)
+- ✅ Framework integration guide (specs → code mapping)
+- ✅ 45-60 minute quick start tutorial
+- ✅ Deployment guides (Vercel/Netlify)
+- **Tech Stack:** Next.js 14, TailwindCSS, ShadCN UI, TanStack Table, React Hook Form + Zod
 - **Location:** [codebase-framework/](codebase-framework/)
 
 ### Future Enhancements 📋

@@ -13,7 +13,10 @@
 - [x] Create User Story Map (USM)
 - [x] Create User Story List (USL)
 - [x] Create User Story Details (USD)
-- [ ] Create Wireframes (Stage 1 Design)
+- [x] Create Wireframes (Stage 1 Design)
+- [x] Create Component Specs (Stage 2 Design)
+- [x] Create Interaction Flows (Stage 3 Design)
+- [ ] Initialize Codebase (Next.js Setup)
 
 ### Previous Weeks
 - [x] Create repository structure

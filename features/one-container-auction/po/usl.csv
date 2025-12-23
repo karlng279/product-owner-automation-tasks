@@ -1,0 +1,15 @@
+id,title,user_role,priority,status,estimate_sp,release,description
+US-001,User Registration,User,High,To Do,3,MVP,As a User, I want to register with email and password so that I can access the platform.
+US-002,User Login,User,High,To Do,2,MVP,As a User, I want to log in to my account so that I can access my dashboard.
+US-003,Seller Dashboard,Seller,Medium,To Do,5,MVP,As a Seller, I want to see a dashboard of my active and ended listings so that I can track my sales.
+US-004,Create Container Listing,Seller,High,To Do,8,MVP,As a Seller, I want to create a new container listing with photos and details so that I can put it up for auction.
+US-005,Edit Listing,Seller,Medium,To Do,3,MVP,As a Seller, I want to edit a listing before bids are placed so that I can correct errors.
+US-006,Browse Listings,Buyer,High,To Do,5,MVP,As a Buyer, I want to browse and filter available containers so that I can find what I need.
+US-007,View Listing Details,Buyer,High,To Do,3,MVP,As a Buyer, I want to view full details and photos of a container so that I can make an informed decision.
+US-008,Place Bid,Buyer,High,To Do,5,MVP,As a Buyer, I want to place a bid on an active auction so that I can try to win the item.
+US-009,Bid History,Buyer,Medium,To Do,3,MVP,As a Buyer, I want to see the history of bids on a listing so that I understand the competition.
+US-010,Auction Timer,User,High,To Do,5,MVP,As a User, I want to see a countdown timer for each auction so that I know when it ends.
+US-011,Auction End Notification,User,Medium,To Do,3,MVP,As a User, I want to see a notification when I win or lose an auction so that I know the outcome.
+US-012,Admin User Management,Admin,Low,To Do,5,MVP,As an Admin, I want to view and manage registered users so that I can maintain platform security.
+US-013,Admin Listing Moderation,Admin,Medium,To Do,5,MVP,As an Admin, I want to remove inappropriate listings so that I can keep the marketplace clean.
+US-014,Payment Instructions,Buyer,High,To Do,2,MVP,As a Winning Bidder, I want to see payment instructions after winning so that I can complete the purchase.

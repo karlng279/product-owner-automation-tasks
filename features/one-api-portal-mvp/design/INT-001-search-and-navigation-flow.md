@@ -418,12 +418,22 @@ const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
 };
 ```
 
-**Result Ranking:**
+**Result Ranking (LIKE Search / Partial Text Matching):**
+
+The search uses **substring matching** (LIKE search) - users do NOT need to type complete words:
+
 1. **Exact match** on endpoint name (e.g., "/shipments")
-2. **Partial match** on endpoint name
-3. **Category match** (e.g., "Tracking")
-4. **Description match** (keyword found in description)
-5. **Content match** (keyword found in full documentation)
+2. **Prefix match** on endpoint name (query starts the name, e.g., "ship" → "shipments")
+3. **Infix/substring match** on endpoint name (query found anywhere, e.g., "ment" → "shipments")
+4. **Path match** (query found in URL path, e.g., "{id}" → "/shipments/{id}")
+5. **Category match** (e.g., "Track" → "Tracking")
+6. **Description match** (query found in description)
+
+**Matching Rules:**
+- **Case-insensitive:** "TRACK" matches "track", "Tracking", "tracker"
+- **Multi-word AND logic:** "book cont" requires BOTH "book" AND "cont" to match
+- **Substring search:** Uses `includes()` / `indexOf()` - not regex
+- **Special characters:** Characters like `{`, `}`, `.`, `*` are escaped to prevent regex errors
 
 **Result Display:**
 ```typescript
@@ -494,7 +504,90 @@ const handleKeyDown = (e: React.KeyboardEvent) => {
 
 ---
 
-### 4. Sidebar Category Expand/Collapse
+### 4. Sidebar Search Filter (LIKE Search / Partial Text Matching)
+
+**Purpose:** Filter endpoints in the sidebar using partial text matching. Users do NOT need to type complete words.
+
+**Implementation:**
+```typescript
+const [searchQuery, setSearchQuery] = useState('');
+
+// Escape special regex characters to prevent errors
+const escapeRegex = (str: string) =>
+  str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+// Filter function with LIKE search behavior
+const filterEndpoints = (endpoints: Endpoint[], query: string) => {
+  if (query.length < 2) return endpoints;
+
+  // Normalize: trim, collapse spaces, lowercase
+  const normalizedQuery = query.trim().replace(/\s+/g, ' ').toLowerCase();
+
+  // Split into words for AND logic
+  const queryWords = normalizedQuery.split(' ').filter(w => w.length > 0);
+
+  return endpoints.filter(endpoint => {
+    // Combine all searchable fields
+    const searchableText = [
+      endpoint.title,
+      endpoint.path,
+      endpoint.description,
+      endpoint.category
+    ].join(' ').toLowerCase();
+
+    // AND logic: ALL words must match somewhere
+    return queryWords.every(word => searchableText.includes(word));
+  });
+};
+
+// Rank results by match quality
+const rankResults = (results: Endpoint[], query: string) => {
+  const q = query.toLowerCase();
+
+  return results.sort((a, b) => {
+    const aName = a.title.toLowerCase();
+    const bName = b.title.toLowerCase();
+
+    // 1. Exact match on name
+    if (aName === q) return -1;
+    if (bName === q) return 1;
+
+    // 2. Prefix match (starts with)
+    if (aName.startsWith(q) && !bName.startsWith(q)) return -1;
+    if (bName.startsWith(q) && !aName.startsWith(q)) return 1;
+
+    // 3. Contains in name
+    if (aName.includes(q) && !bName.includes(q)) return -1;
+    if (bName.includes(q) && !aName.includes(q)) return 1;
+
+    // 4. Contains in path
+    if (a.path.toLowerCase().includes(q)) return -1;
+    if (b.path.toLowerCase().includes(q)) return 1;
+
+    // 5. Alphabetical fallback
+    return aName.localeCompare(bName);
+  });
+};
+```
+
+**Examples:**
+| User Types | Matches | Why |
+|------------|---------|-----|
+| `ship` | shipment, shipping, /shipments/{id} | Substring match |
+| `TRACK` | track, Tracking, tracker | Case-insensitive |
+| `book cont` | POST /bookings/containers | AND logic: both words match |
+| `{id}` | GET /shipments/{id} | Special chars escaped |
+| `ment` | shipment, document, payment | Infix/substring match |
+
+**Behavior:**
+- Type ≥2 characters → filter begins (debounced 300ms)
+- Categories with matches auto-expand
+- Non-matching categories collapse/hide
+- Shows count: "5 results" or "No endpoints found"
+
+---
+
+### 5. Sidebar Category Expand/Collapse (unchanged)
 
 **Click Behavior:**
 ```typescript
@@ -537,7 +630,7 @@ const toggleCategory = (categoryId: string) => {
 
 ---
 
-### 5. Sidebar Endpoint Click → Smooth Scroll
+### 6. Sidebar Endpoint Click → Smooth Scroll
 
 **Click Behavior:**
 ```typescript
@@ -585,7 +678,7 @@ const handleEndpointClick = (endpointId: string) => {
 
 ---
 
-### 6. Scroll Spy (Auto-highlight on scroll)
+### 7. Scroll Spy (Auto-highlight on scroll)
 
 **Intersection Observer Implementation:**
 ```typescript
@@ -626,7 +719,7 @@ useEffect(() => {
 
 ---
 
-### 7. URL Hash Deep Linking
+### 8. URL Hash Deep Linking
 
 **On Page Load:**
 ```typescript

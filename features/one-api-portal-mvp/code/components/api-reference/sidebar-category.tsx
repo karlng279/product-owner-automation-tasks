@@ -11,6 +11,7 @@ interface SidebarCategoryProps {
   isActive: boolean;
   activeEndpoint: string | null;
   onToggle: () => void;
+  highlightQuery?: string;
 }
 
 export function SidebarCategory({
@@ -19,7 +20,10 @@ export function SidebarCategory({
   isActive,
   activeEndpoint,
   onToggle,
+  highlightQuery,
 }: SidebarCategoryProps) {
+  // highlightQuery can be used for future text highlighting enhancement
+  void highlightQuery;
   return (
     <div className="border-b border-gray-200 last:border-0">
       {/* Category Header */}

@@ -209,10 +209,17 @@ When hamburger (☰) clicked:
 - **Hover:** Background light blue (#EFF6FF), cursor pointer
 - **Active:** Bold blue text (#2563EB), blue left border (3px)
 
-**Search Bar:**
+**Search Bar (LIKE Search / Partial Text Matching):**
 - Placeholder: "Filter endpoints..."
-- Type ≥2 characters → filters visible endpoints
+- Type ≥2 characters → filters visible endpoints using partial text matching
 - Shows matching count: "5 results" or "No matches"
+
+**Partial Text Matching Behavior:**
+- **Substring match:** "ship" matches "shipment", "shipping", "/shipments/{id}"
+- **Case-insensitive:** "TRACK" matches "track", "Tracking", "tracker"
+- **Multi-word AND logic:** "book cont" matches endpoints with BOTH "book" AND "cont"
+- **Searches across:** endpoint name, URL path, description, category name
+- **Special characters:** "{id}" safely matches endpoints with path parameters
 
 **Behavior:**
 - Click category → expands/collapses
@@ -349,17 +356,32 @@ User clicks close (✕) or taps outside menu
 → Focus returns to hamburger button
 ```
 
-### 5. Search Filter (Sidebar)
+### 5. Search Filter (Sidebar) - LIKE Search / Partial Text Matching
 ```
-User types "shipment" in sidebar search
-→ Filter endpoints in real-time (debounce 300ms)
-→ Show only matching endpoints
+User types "ship" (partial text) in sidebar search
+→ Filter endpoints using substring matching (debounce 300ms)
+→ Show endpoints containing "ship": "shipment", "shipping", "/shipments/{id}"
+→ Match is case-insensitive: "SHIP" = "ship" = "Ship"
 → Auto-expand categories with matches
 → Show count: "3 results in Tracking, Booking"
-→ No matches: "No endpoints found. Try different keywords."
+
+User types "book cont" (multiple words)
+→ Apply AND logic: must match BOTH "book" AND "cont"
+→ Show only endpoints matching all words
+→ Example: "POST /bookings/containers" matches (has both)
+
+User types "{id}" (special characters)
+→ Special regex characters escaped automatically
+→ Match endpoints with "{id}" in path: "GET /shipments/{id}"
+→ No JavaScript errors from regex special chars
+
+User types "xyz123" (no matches)
+→ Show: "No endpoints found. Try different keywords."
+→ All categories collapsed or hidden
 
 User clears search
 → Reset to previous expand/collapse state
+→ Show all endpoints
 ```
 
 ---

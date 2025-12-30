@@ -137,7 +137,7 @@ If you want to understand how to **implement** your feature specs as working cod
 
 **Next Steps:**
 - Work with designers using [design-framework/](design-framework/)
-- Review [pm-knowledge-hub/](po-framework/pm-knowledge-hub/) for business context and domain knowledge
+- Review [po-knowledge-hub/](po-framework/po-knowledge-hub/) for business context and domain knowledge
 
 ---
 

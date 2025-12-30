@@ -66,6 +66,6 @@ Each stage has its own folder containing:
 
 ## Additional Resources
 
-- **PM Knowledge Hub:** [pm-knowledge-hub/](pm-knowledge-hub/) - Foundational business context, domain knowledge, and market insights that inform product decisions
+- **PO Knowledge Hub:** [po-knowledge-hub/](po-knowledge-hub/) - Foundational business context, domain knowledge, and market insights that inform product decisions
 - **Framework Structure:** See root [README.md](../README.md) for complete workflow overview
 - **Sample Project:** [features/one-api-portal-mvp](../features/one-api-portal-mvp) - Complete example

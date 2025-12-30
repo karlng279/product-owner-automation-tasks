@@ -229,7 +229,7 @@ vim task-management/BACKLOG.md
 - **Backlog:** [task-management/BACKLOG.md](task-management/BACKLOG.md)
 - **Task Management Guide:** [task-management/TASK_MANAGEMENT_SOLO.md](task-management/TASK_MANAGEMENT_SOLO.md)
 - **PO Framework:** [po-framework/README.md](po-framework/README.md)
-- **PM Knowledge Hub:** [po-framework/pm-knowledge-hub/](po-framework/pm-knowledge-hub/) - Business context, domain knowledge, and market insights
+- **PO Knowledge Hub:** [po-framework/po-knowledge-hub/](po-framework/po-knowledge-hub/) - Business context, domain knowledge, and market insights
 
 ### For Design
 - **Design Framework:** [design-framework/README.md](design-framework/README.md)

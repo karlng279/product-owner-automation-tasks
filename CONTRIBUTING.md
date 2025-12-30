@@ -54,6 +54,7 @@ Thank you for contributing to this product! This guide will help you navigate th
 ```
 /                           # One product, complete lifecycle
 ├── po-framework/           # Templates & rules (don't edit often)
+│   └── po-knowledge-hub/   # Business context, domain knowledge & market insights
 ├── resources/              # Product knowledge & standards
 ├── discovery/              # Problem space research
 ├── specs/                  # Feature specifications (PRD → UAT)
@@ -63,7 +64,9 @@ Thank you for contributing to this product! This guide will help you navigate th
 └── tooling/                # Automation scripts
 ```
 
-**Full structure explained in:** [README.md](./README.md)
+**Key Resources:**
+- **PO Knowledge Hub:** [po-framework/po-knowledge-hub/](po-framework/po-knowledge-hub/) - Foundational business context, domain knowledge, and market insights that inform product decisions
+- **Full structure explained in:** [README.md](./README.md)
 
 ---
 
@@ -121,7 +124,9 @@ cd discovery/
 # Document in appropriate subdirectories
 ```
 
-**Templates:** See `/discovery/README.md`
+**Resources:**
+- **Templates:** See `/discovery/README.md`
+- **Foundation Knowledge:** Review [po-framework/po-knowledge-hub/](po-framework/po-knowledge-hub/) for business context, domain knowledge, and market insights
 
 ### Step 2: Generate Feature Structure
 
@@ -481,6 +486,7 @@ cd qa/test-runs
 ## Getting Help
 
 - **Framework Questions:** See `/po-framework/product-po-automation-spec/README.md`
+- **Business Context & Domain Knowledge:** See [po-framework/po-knowledge-hub/](po-framework/po-knowledge-hub/)
 - **Tooling Issues:** See `/tooling/README.md`
 - **Process Questions:** Ask in #product-team Slack channel
 - **Technical Issues:** Ask in #engineering Slack channel

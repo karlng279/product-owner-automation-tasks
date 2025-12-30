@@ -7,7 +7,7 @@ This document tracks all features in the product and their status across the PO 
 | Feature | PRD | USM | USL | USD | UAT | Design | Dev | QA | Priority | Status |
 |---------|-----|-----|-----|-----|-----|--------|-----|-------|----------|--------|
 | ONE API Portal MVP | ✅ | ✅ | ✅ | ✅ | ⏳ | ⏳ | ⏳ | ⏳ | P0 | USD Complete |
-| Container Auction MVP | ✅ | ⏳ | ⏳ | ⏳ | ⏳ | ⏳ | ⏳ | ⏳ | P0 | PRD Drafted |
+| Container Auction MVP | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🚧 | ⏳ | P0 | Dev In Progress |
 
 **Legend:**
 - ✅ Complete
@@ -89,4 +89,4 @@ Feature: booking-flow
 
 ---
 
-*Last updated: 2025-12-08*
+*Last updated: 2025-12-30*

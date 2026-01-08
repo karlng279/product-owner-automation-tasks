@@ -7,7 +7,6 @@ This document tracks all features in the product and their status across the PO 
 | Feature | PRD | USM | USL | USD | UAT | Design | Dev | QA | Priority | Status |
 |---------|-----|-----|-----|-----|-----|--------|-----|-------|----------|--------|
 | ONE API Portal MVP | ✅ | ✅ | ✅ | ✅ | ⏳ | ⏳ | ⏳ | ⏳ | P0 | USD Complete |
-| Container Auction MVP | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🚧 | ⏳ | P0 | Dev In Progress |
 
 **Legend:**
 - ✅ Complete

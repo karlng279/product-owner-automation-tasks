@@ -83,7 +83,7 @@ design-framework/
 
 ### Stage 1: Wireframes (Text + ASCII)
 
-**Input:** User Story Details (USD) with Acceptance Criteria
+**Input:** User Story Details (`usd/*.md`) with Acceptance Criteria
 **Output:** Wireframes (WF-XXX)
 
 **Purpose:** Translate acceptance criteria into visual layout using text descriptions and ASCII art.
@@ -384,7 +384,7 @@ Reference patterns for common UI challenges:
 The Design Framework integrates seamlessly with the PO Framework:
 
 **PO Framework Output → Design Framework Input:**
-- USD (User Story Details) with Acceptance Criteria → Stage 1 Wireframes
+- USD files (`usd/*.md`) with Acceptance Criteria → Stage 1 Wireframes
 
 **Design Framework Output → Code Implementation:**
 - Interaction Specs → Developer Implementation

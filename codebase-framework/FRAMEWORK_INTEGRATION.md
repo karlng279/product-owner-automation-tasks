@@ -66,14 +66,16 @@ difficult to optimize costs and identify performance issues.
 
 ### USD → Component Features
 
-User Story Details (USD) acceptance criteria map directly to component features.
+User Story Details (USD) acceptance criteria map directly to component features. Each story has its own USD file (`usd/ST-XXX.md`) containing acceptance criteria.
 
-**USD Format:**
-```csv
-Story ID,Acceptance Criteria ID,Acceptance Criteria
-US-001,AC-001-1,"User can view total API calls for the current month"
-US-001,AC-001-2,"User can filter API calls by endpoint"
-US-001,AC-001-3,"System displays response time percentiles (p50, p95, p99)"
+**USD Format** (from `usd/ST-001.md`):
+```markdown
+## UI Elements
+- **AC-001:** User can view total API calls for the current month
+- **AC-002:** User can filter API calls by endpoint
+
+## Logic
+- **AC-003:** System displays response time percentiles (p50, p95, p99)
 ```
 
 **Code Translation:**
@@ -131,13 +133,23 @@ Acceptance Criteria | Code Implementation
 
 ### UAT → Playwright Tests
 
-User Acceptance Tests (UAT) in Given/When/Then format convert directly to Playwright tests.
+User Acceptance Tests (UAT) in Given/When/Then format convert directly to Playwright tests. Each story has its own UAT file (`uat/ST-XXX.md`) containing test cases.
 
-**UAT Format:**
-```csv
-Test ID,Story ID,Test Scenario,Given,When,Then
-UAT-001,US-001,"View monthly API usage","I am on the dashboard page","I view the metrics","I see total API calls for current month"
-UAT-002,US-001,"Filter by endpoint","I am on the dashboard page","I select '/users' from endpoint filter","I see only /users API calls"
+**UAT Format** (from `uat/ST-001.md`):
+```markdown
+## TC-001: View monthly API usage (P0)
+
+**Scenario:** View monthly API usage
+**Precondition:** None
+
+| Step | Description |
+|------|-------------|
+| **Given** | I am on the dashboard page |
+| **When** | I view the metrics |
+| **Then** | I see total API calls for current month |
+
+- **AC References:** AC-001
+- **Test Result:** Not Tested
 ```
 
 **Playwright Test:**
@@ -459,19 +471,30 @@ identify which endpoints are most popular and optimize accordingly.
 
 ### 2. USD (Acceptance Criteria)
 
-```csv
-Story ID,AC ID,Acceptance Criteria
-US-005,AC-005-1,"User can see a list of all endpoints"
-US-005,AC-005-2,"User can see call count for each endpoint"
-US-005,AC-005-3,"User can sort endpoints by call count"
-US-005,AC-005-4,"User can click an endpoint to see details"
+From `usd/ST-005.md`:
+```markdown
+## UI Elements
+- **AC-001:** User can see a list of all endpoints
+- **AC-002:** User can see call count for each endpoint
+
+## UI Behavior
+- **AC-003:** User can sort endpoints by call count
+- **AC-004:** User can click an endpoint to see details
 ```
 
 ### 3. UAT (Test Scenario)
 
-```csv
-Test ID,Given,When,Then
-UAT-005,"Dashboard loaded","I click on endpoint column header","Endpoints are sorted by call count"
+From `uat/ST-005.md`:
+```markdown
+## TC-001: Sort endpoints by call count (P0)
+
+| Step | Description |
+|------|-------------|
+| **Given** | Dashboard loaded |
+| **When** | I click on endpoint column header |
+| **Then** | Endpoints are sorted by call count |
+
+- **AC References:** AC-003
 ```
 
 ### 4. Wireframe (WF-005)

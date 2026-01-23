@@ -92,20 +92,20 @@ Discovery → PRD → USM → USL → USD → UAT → Design → Development →
 
 ### Stage 3: USL (User Story List)
 - **Who:** Product Owner
-- **Format:** CSV
+- **Format:** Markdown (single `usl.md` file)
 - **Purpose:** Backlog with MoSCoW priorities
 - **Quality Gate:** `/tooling/validators/validate-usl.js`
 
 ### Stage 4: USD (User Story Details)
 - **Who:** Product Owner + Tech Lead
-- **Format:** CSV
+- **Format:** Markdown (one file per story in `usd/` folder)
 - **Purpose:** Acceptance criteria
 - **Quality Gate:** `/tooling/validators/validate-usd.js`
 
 ### Stage 5: UAT (User Acceptance Testing)
 - **Who:** QA + Product Owner
-- **Format:** CSV (BDD)
-- **Purpose:** Test scenarios
+- **Format:** Markdown (one file per story in `uat/` folder)
+- **Purpose:** BDD test scenarios
 - **Quality Gate:** `/tooling/validators/validate-uat.js`
 
 **Rules for each stage:** See `/po-framework/product-po-automation-spec/stageN-*/rules.md`
@@ -142,9 +142,13 @@ This creates:
 specs/your-feature-name/
 ├── prd.md          # Assigned PRD-XXX
 ├── usm.md          # Assigned USM-XXX
-├── usl.csv         # Template with proper columns
-├── usd.csv         # Template with proper columns
-└── uat.csv         # Template with proper columns
+├── usl.md          # User Story List (all stories)
+├── usd/            # User Story Details (one per story)
+│   ├── ST-001.md
+│   └── ST-002.md
+└── uat/            # User Acceptance Tests (one per story)
+    ├── ST-001.md
+    └── ST-002.md
 ```
 
 ### Step 3: Fill Out PRD
@@ -364,8 +368,8 @@ USD: AC-XXX to AC-YYY
 ## Related Specs
 - **Stories:** ST-001, ST-002
 - **PRD:** /specs/your-feature/prd.md
-- **USD:** /specs/your-feature/usd.csv
-- **UAT:** /specs/your-feature/uat.csv
+- **USD:** /specs/your-feature/usd/
+- **UAT:** /specs/your-feature/uat/
 
 ## Acceptance Criteria
 - [x] AC-001: Description

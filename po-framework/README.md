@@ -12,11 +12,34 @@ The PO Framework provides a structured 5-stage workflow for translating product 
 
 The PO workflow transforms product ideas through five progressive stages:
 
-1. **PRD (Product Requirements Document)** – Defines what problem we are solving and why
-2. **USM (User Story Map)** – Describes high-level user activities, steps and stories
-3. **USL (User Story List)** – CSV backlog index with priorities and status
-4. **USD (User Story Details)** – Per-story acceptance criteria, NFRs and dependencies
-5. **UAT (User Acceptance Testing)** – BDD test cases (Given/When/Then)
+| Stage | Artifact | Format | Description |
+|-------|----------|--------|-------------|
+| 1 | **PRD** | `prd.md` | Product Requirements Document – Defines the problem and goals |
+| 2 | **USM** | `usm.md` | User Story Map – High-level user activities and steps |
+| 3 | **USL** | `usl.md` | User Story List – All stories in one readable file |
+| 4 | **USD** | `usd/*.md` | User Story Details – Per-story acceptance criteria |
+| 5 | **UAT** | `uat/*.md` | User Acceptance Testing – Per-story BDD test cases |
+
+---
+
+## Feature Folder Structure
+
+Each feature produces artifacts in a consistent structure:
+
+```
+features/{feature-name}/po/
+├── prd.md                   # Product Requirements Document
+├── usm.md                   # User Story Map
+├── usl.md                   # User Story List (all stories)
+├── usd/                     # User Story Details
+│   ├── ST-001.md            # Acceptance criteria for story 1
+│   ├── ST-002.md            # Acceptance criteria for story 2
+│   └── ...
+└── uat/                     # User Acceptance Testing
+    ├── ST-001.md            # Test cases for story 1
+    ├── ST-002.md            # Test cases for story 2
+    └── ...
+```
 
 ---
 
@@ -26,7 +49,7 @@ The PO Framework outputs (particularly **USD with Acceptance Criteria**) serve a
 
 ```
 PO Framework Output → Design Framework Input
-USD (Acceptance Criteria) → Wireframes (WF-XXX)
+USD (usd/*.md) → Wireframes (WF-XXX)
 ```
 
 **Complete Workflow:**
@@ -48,10 +71,13 @@ See [design-framework/README.md](../design-framework/README.md) for details.
 
 Each stage has its own folder containing:
 
-- **`rules.md`** – Detailed guidelines for creating and maintaining that artifact, including naming conventions, required fields and mapping rules from previous stages
-- **`example.[md|csv]`** – Concrete example showing how to apply the rules to a realistic feature
-- **`prompts.md`** – Prompt templates for generating, reviewing and updating the artifact via AI
-- **`quality-gate.md`** – Checklist of conditions that must be met for an artifact to be considered ready for the next stage
+| File | Purpose |
+|------|---------|
+| **`rules.md`** | Detailed guidelines for creating and maintaining that artifact |
+| **`example.md`** | Concrete example showing how to apply the rules |
+| **`template.md`** | Blank template for new files (stages 3-5) |
+| **`prompts.md`** | Prompt templates for generating, reviewing and updating via AI |
+| **`quality-gate.md`** | Checklist for validating the artifact before proceeding |
 
 ---
 
@@ -67,5 +93,5 @@ Each stage has its own folder containing:
 ## Additional Resources
 
 - **PO Knowledge Hub:** [po-knowledge-hub/](po-knowledge-hub/) - Foundational business context, domain knowledge, and market insights that inform product decisions
-- **Framework Structure:** See root [README.md](../README.md) for complete workflow overview
+- **Framework Structure:** See [framework-structure.md](framework-structure.md) for detailed folder layout
 - **Sample Project:** [features/one-api-portal-mvp](../features/one-api-portal-mvp) - Complete example

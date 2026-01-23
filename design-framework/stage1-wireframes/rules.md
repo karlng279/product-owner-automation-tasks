@@ -172,7 +172,7 @@ Show both:
 
 ### From USD to Wireframe
 
-**Input:** Acceptance Criteria (AC-XXX) from USD
+**Input:** Acceptance Criteria (AC-XXX) from USD files (`usd/*.md`)
 **Output:** Wireframe (WF-XXX) showing how AC is addressed
 
 **Mapping:**

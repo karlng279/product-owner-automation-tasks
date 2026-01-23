@@ -13,7 +13,7 @@ This guide walks you through the complete design workflow: from acceptance crite
 ## Workflow at a Glance
 
 ```
-Input: USD with Acceptance Criteria (AC-XXX)
+Input: USD files (usd/*.md) with Acceptance Criteria (AC-XXX)
    ↓
 Stage 1: Wireframes (WF-XXX)
    ↓ Pass Quality Gate
@@ -29,7 +29,7 @@ Output: Ready for Code Implementation
 ## Prerequisites
 
 Before starting:
-- [✓] USD (User Story Details) with Acceptance Criteria complete
+- [✓] USD files (`usd/*.md`) with Acceptance Criteria complete
 - [✓] Design Rules understood ([design-rules/](design-rules/))
 - [✓] ShadCN UI component library familiar ([shadcn-component-catalog.md](stage2-component-specs/shadcn-component-catalog.md))
 - [✓] Workflow stages understood (read this document)
@@ -40,7 +40,7 @@ Before starting:
 
 **Goal:** Translate acceptance criteria into visual layout using text + ASCII art
 
-**Input:** USD with Acceptance Criteria (AC-XXX)
+**Input:** USD files (`usd/*.md`) with Acceptance Criteria (AC-XXX)
 **Output:** Wireframes (WF-XXX)
 **Time:** 1-2 hours per screen
 

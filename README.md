@@ -59,11 +59,11 @@ PRD → USM → USL → USD → UAT → Wireframes → Components → Interactio
 
 | Stage | Artifact | Purpose | Format |
 |-------|----------|---------|--------|
-| 1 | **PRD** | Product Requirements Document - the *why* and *what* | Markdown |
-| 2 | **USM** | User Story Map - Activities, Steps, Stories | Markdown |
-| 3 | **USL** | User Story List - Prioritized backlog (MoSCoW) | CSV |
-| 4 | **USD** | User Story Details - Acceptance criteria | CSV |
-| 5 | **UAT** | User Acceptance Tests - BDD scenarios (Given/When/Then) | CSV |
+| 1 | **PRD** | Product Requirements Document - the *why* and *what* | Markdown (`prd.md`) |
+| 2 | **USM** | User Story Map - Activities, Steps, Stories | Markdown (`usm.md`) |
+| 3 | **USL** | User Story List - Prioritized backlog (MoSCoW) | Markdown (`usl.md`) |
+| 4 | **USD** | User Story Details - Acceptance criteria | Markdown (`usd/*.md`) |
+| 5 | **UAT** | User Acceptance Tests - BDD scenarios (Given/When/Then) | Markdown (`uat/*.md`) |
 
 **Templates & Rules:** [po-framework/](po-framework/)
 
@@ -167,13 +167,13 @@ cd features/my-new-feature
 # Create po/usm.md - Map activities → steps → stories
 
 # 4. Prioritize Stories (Stage 3)
-# Create po/usl.csv - Apply MoSCoW prioritization
+# Create po/usl.md - Apply MoSCoW prioritization
 
 # 5. Detail Stories (Stage 4)
-# Create po/usd.csv - Write acceptance criteria
+# Create po/usd/ST-001.md, ST-002.md... - Write acceptance criteria
 
 # 6. Write Test Scenarios (Stage 5)
-# Create po/uat.csv - BDD Given/When/Then scenarios
+# Create po/uat/ST-001.md, ST-002.md... - BDD Given/When/Then scenarios
 
 # 7. Create Design Specs
 # Create design/WF-001-*.md, COMP-001-*.md, INT-001-*.md

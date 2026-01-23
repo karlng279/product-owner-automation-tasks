@@ -135,7 +135,7 @@ codebase-framework/
 
 **UAT (User Acceptance Tests) → Playwright Tests**
 - Given/When/Then = Test scenarios
-- Direct conversion from UAT.csv to test cases
+- Direct conversion from UAT files (`uat/*.md`) to test cases
 
 **User Stories → Implementation Checklist**
 - Each story = A feature to build

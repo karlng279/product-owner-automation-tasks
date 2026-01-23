@@ -206,7 +206,7 @@ When using these prompts, always provide:
 3. **PO Artifacts:**
    - PRD context
    - Story details from USM
-   - Acceptance criteria from USD
+   - Acceptance criteria from USD files (`usd/*.md`)
 
 4. **Examples:**
    - Link to examples.md

@@ -21,7 +21,7 @@ By the end of this guide, you'll know how to:
 Before using this framework, you should have:
 - **A text editor or IDE** (VS Code, Sublime, etc.)
 - **Basic understanding of product management concepts** (user stories, acceptance criteria)
-- **CSV-compatible spreadsheet tool** (Excel, Google Sheets, Numbers)
+- **Markdown editor or IDE** (VS Code with Markdown preview recommended)
 - **Optional for implementation:** Node.js, Git, basic React knowledge
 
 ---
@@ -35,9 +35,9 @@ Follow this step-by-step guide to spec your first feature:
 Navigate to [features/one-api-portal-mvp](features/one-api-portal-mvp) and review:
 - `prd.md` - See how product requirements are structured
 - `usm.md` - Understand the user story mapping format
-- `usl.csv` - Review how stories are prioritized (MoSCoW)
-- `usd.csv` - See detailed acceptance criteria format
-- `uat.csv` - Understand BDD test scenarios (Given/When/Then)
+- `usl.md` - Review how stories are prioritized (MoSCoW)
+- `usd/` folder - See detailed acceptance criteria format (one file per story)
+- `uat/` folder - Understand BDD test scenarios (one file per story)
 
 **Key Learning:** Notice how each stage builds on the previous one, adding more detail as you progress.
 

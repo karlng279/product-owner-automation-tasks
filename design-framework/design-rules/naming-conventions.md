@@ -85,9 +85,9 @@ COMP-004: NavigationHeader
 
 - `prd.md` - Product Requirements Document
 - `usm.md` - User Story Map
-- `usl.csv` - User Story List
-- `usd.csv` - User Story Details
-- `uat.csv` - User Acceptance Tests
+- `usl.md` - User Story List
+- `usd/ST-XXX.md` - User Story Details (per-story files)
+- `uat/ST-XXX.md` - User Acceptance Tests (per-story files)
 
 ## CSS Class Naming
 

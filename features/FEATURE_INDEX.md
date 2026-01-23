@@ -7,7 +7,6 @@ This document tracks all features in the product and their status across the PO 
 | Feature | PRD | USM | USL | USD | UAT | Design | Dev | QA | Priority | Status |
 |---------|-----|-----|-----|-----|-----|--------|-----|-------|----------|--------|
 | ONE API Portal MVP | ✅ | ✅ | ✅ | ✅ | ⏳ | ⏳ | ⏳ | ⏳ | P0 | USD Complete |
-| Container Auction MVP | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | 🚧 | ⏳ | P0 | Dev In Progress |
 
 **Legend:**
 - ✅ Complete
@@ -41,8 +40,8 @@ Track story ID ranges to prevent conflicts:
 ### ONE API Portal MVP (PRD-001)
 - **PRD:** [specs/one-api-portal-mvp/prd.md](./one-api-portal-mvp/prd.md) (v0.2)
 - **USM:** [specs/one-api-portal-mvp/usm.md](./one-api-portal-mvp/usm.md) (6 activities, 17 stories)
-- **USL:** [specs/one-api-portal-mvp/usl.csv](./one-api-portal-mvp/usl.csv) (14 Must-have, 3 Should-have)
-- **USD:** [specs/one-api-portal-mvp/usd.csv](./one-api-portal-mvp/usd.csv) (221 ACs, 53 story points)
+- **USL:** [specs/one-api-portal-mvp/usl.md](./one-api-portal-mvp/po/usl.md) (14 Must-have, 3 Should-have)
+- **USD:** [specs/one-api-portal-mvp/usd/](./one-api-portal-mvp/po/usd/) (per-story acceptance criteria files)
 - **Status:** USD Complete (2025-12-08)
 - **Next:** Create UAT (User Acceptance Tests)
 
@@ -76,17 +75,5 @@ Track story ID ranges to prevent conflicts:
 - **ACs (AC-XXX):** Per-USD sequence
 - **Test Cases (TC-XXX):** Per-UAT sequence
 
-**Example:**
-```
-Feature: shipment-overview
-  PRD-001, USM-001, USL-001, USD-001, UAT-001
-  Stories: ST-001 to ST-008
-
-Feature: booking-flow
-  PRD-002, USM-002, USL-002, USD-002, UAT-002
-  Stories: ST-009 to ST-020 (continues from previous feature)
-```
-
 ---
-
 *Last updated: 2025-12-30*

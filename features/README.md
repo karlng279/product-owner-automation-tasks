@@ -9,9 +9,13 @@ specs/
 ├── {feature-name}/         # One folder per feature
 │   ├── prd.md              # Stage 1: Product Requirements Document
 │   ├── usm.md              # Stage 2: User Story Map
-│   ├── usl.csv             # Stage 3: User Story List
-│   ├── usd.csv             # Stage 4: User Story Details
-│   └── uat.csv             # Stage 5: UAT Test Cases
+│   ├── usl.md              # Stage 3: User Story List (all stories in one file)
+│   ├── usd/                # Stage 4: User Story Details (one file per story)
+│   │   ├── ST-001.md
+│   │   └── ST-002.md
+│   └── uat/                # Stage 5: UAT Test Cases (one file per story)
+│       ├── ST-001.md
+│       └── ST-002.md
 ├── {another-feature}/
 │   └── ...
 └── index.md                # Table of contents for all features
@@ -65,43 +69,48 @@ Each feature follows a structured 5-stage process:
 
 ---
 
-### Stage 3: USL (usl.csv)
+### Stage 3: USL (usl.md)
 **Purpose:** Backlog index with MoSCoW prioritization
 
 **Contains:**
-- One row per user story
-- Story metadata (module, summary, user_story)
-- MoSCoW priority (Must/Should/Could/Won't-have)
-- Status tracking
-- JIRA integration fields
+- Summary table with story counts and points
+- Stories by module tables with anchor links
+- Detailed story entries with metadata
 
-**Template:** `/po-framework/product-po-automation-spec/stage3-usl/`
+**Format:** Single Markdown file (`usl.md`)
+
+**Template:** `/po-framework/stage3-usl/`
 
 ---
 
-### Stage 4: USD (usd.csv)
+### Stage 4: USD (usd/*.md)
 **Purpose:** Acceptance criteria and implementation details
 
 **Contains:**
-- Structured acceptance criteria (UI, behavior, logic, special notes)
-- Non-functional requirements
+- Structured acceptance criteria (UI Elements, UI Behavior, Logic, Special Notes)
+- Non-functional requirements with metrics
 - Dependencies
 - Effort estimates
+- Traceability to UAT
 
-**Template:** `/po-framework/product-po-automation-spec/stage4-usd/`
+**Format:** One Markdown file per story in `usd/` folder (e.g., `usd/ST-001.md`)
+
+**Template:** `/po-framework/stage4-usd/`
 
 ---
 
-### Stage 5: UAT (uat.csv)
+### Stage 5: UAT (uat/*.md)
 **Purpose:** BDD test scenarios (Given/When/Then)
 
 **Contains:**
-- Test scenarios per story
-- BDD format (Given/When/Then)
-- Links to acceptance criteria
-- Test results (Pass/Failed/Not Testable)
+- Test cases with Given/When/Then tables
+- AC references for traceability
+- Test results (Pass/Failed/Not Tested/Blocked)
+- Summary table and AC Coverage Matrix
 
-**Template:** `/po-framework/product-po-automation-spec/stage5-uat/`
+**Format:** One Markdown file per story in `uat/` folder (e.g., `uat/ST-001.md`)
+
+**Template:** `/po-framework/stage5-uat/`
 
 ---
 
@@ -122,7 +131,7 @@ This will:
 ### Option 2: Manual Creation
 1. Create folder: `mkdir specs/feature-name`
 2. Copy templates from `/po-framework/product-po-automation-spec/`
-3. Rename to: `prd.md`, `usm.md`, `usl.csv`, `usd.csv`, `uat.csv`
+3. Rename to: `prd.md`, `usm.md`, `usl.md`, and create `usd/` and `uat/` folders
 4. Assign next available IDs (check existing features)
 5. Update `/specs/index.md`
 

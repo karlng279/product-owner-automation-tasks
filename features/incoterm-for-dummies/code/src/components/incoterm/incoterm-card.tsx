@@ -1,14 +1,52 @@
 import Link from "next/link";
-import { Ship, Truck } from "lucide-react";
+import { ChevronRight, Ship, Truck } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Incoterm } from "@/types";
+import { cn } from "@/lib/utils";
 
 interface IncotermCardProps {
   incoterm: Incoterm;
+  variant?: "list" | "grid";
 }
 
-export function IncotermCard({ incoterm }: IncotermCardProps) {
+export function IncotermCard({
+  incoterm,
+  variant = "list",
+}: IncotermCardProps) {
+  if (variant === "list") {
+    return (
+      <Link href={`/learn/${incoterm.code.toLowerCase()}`}>
+        <Card className="transition-all hover:border-primary hover:shadow-md">
+          <CardContent className="flex items-center gap-4 p-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
+              {incoterm.transportMode === "sea" ? (
+                <Ship className="h-6 w-6 text-primary" />
+              ) : (
+                <Truck className="h-6 w-6 text-primary" />
+              )}
+            </div>
+            <div className="flex min-w-0 flex-1 flex-col gap-1">
+              <div className="flex items-center gap-2">
+                <span className="text-lg font-bold text-primary">
+                  {incoterm.code}
+                </span>
+                <span className="text-muted-foreground">•</span>
+                <span className="truncate font-medium">
+                  {incoterm.fullName}
+                </span>
+              </div>
+              <p className="truncate text-sm text-muted-foreground">
+                {incoterm.keyPoint}
+              </p>
+            </div>
+            <ChevronRight className="h-5 w-5 text-muted-foreground/50" />
+          </CardContent>
+        </Card>
+      </Link>
+    );
+  }
+
   return (
     <Link href={`/learn/${incoterm.code.toLowerCase()}`}>
       <Card className="h-full transition-all hover:border-primary hover:shadow-md">
@@ -23,7 +61,9 @@ export function IncotermCard({ incoterm }: IncotermCardProps) {
               </p>
             </div>
             <Badge
-              variant={incoterm.transportMode === "sea" ? "default" : "secondary"}
+              variant={
+                incoterm.transportMode === "sea" ? "default" : "secondary"
+              }
               className="flex items-center gap-1"
             >
               {incoterm.transportMode === "sea" ? (

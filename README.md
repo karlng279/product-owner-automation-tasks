@@ -14,7 +14,6 @@ A complete product lifecycle management system with:
 1. **PO Framework** - 5-stage specification workflow (PRD → USM → USL → USD → UAT)
 2. **Design Framework** - 3-stage design system (Wireframes → Components → Interactions)
 3. **Codebase Framework** - Implementation guides for Next.js applications
-4. **Task Management** - Solo PM workflow for prioritizing and tracking work
 
 ### Who This Is For
 - **Solo Product Managers** - Managing entire product lifecycles independently
@@ -30,11 +29,6 @@ This repository contains the complete product lifecycle workflow - from discover
 
 ```
 /
-├── task-management/            # Solo PM workflow tracking
-│   ├── NOW.md                  # Current work focus
-│   ├── BACKLOG.md              # Prioritized feature backlog
-│   └── TASK_MANAGEMENT_SOLO.md # Task management methodology
-│
 ├── po-framework/               # PO automation templates (PRD→USM→USL→USD→UAT) + PM playbooks
 ├── design-framework/           # Complete text-based design system (Wireframes → Components → Interactions)
 ├── codebase-framework/         # Development framework templates (architecture, coding standards, testing)
@@ -125,7 +119,6 @@ The codebase framework provides complete implementation guides for building work
 - Convert UAT scenarios to Playwright tests
 - Execute acceptance tests
 - Deploy to Vercel
-- Track progress in task-management/
 
 ---
 
@@ -203,31 +196,12 @@ cd features/existing-feature/po
 
 ---
 
-### Workflow 3: Manage Your Product Backlog
 
-**When to use:** Daily/weekly task management as a solo PM
-
-```bash
-# 1. Update NOW.md with current focus
-vim task-management/NOW.md
-
-# 2. Review and reprioritize BACKLOG.md
-vim task-management/BACKLOG.md
-
-# 3. Move completed items from NOW to DONE
-# Move next priority items from BACKLOG to NOW
-```
-
-**Frequency:** Daily for NOW.md, Weekly for BACKLOG.md
-
----
 
 ## 📖 Documentation
 
 ### For Product Management
-- **Current Focus:** [task-management/NOW.md](task-management/NOW.md)
-- **Backlog:** [task-management/BACKLOG.md](task-management/BACKLOG.md)
-- **Task Management Guide:** [task-management/TASK_MANAGEMENT_SOLO.md](task-management/TASK_MANAGEMENT_SOLO.md)
+### For Product Management
 - **PO Framework:** [po-framework/README.md](po-framework/README.md)
 - **PO Knowledge Hub:** [po-framework/po-knowledge-hub/](po-framework/po-knowledge-hub/) - Business context, domain knowledge, and market insights
 
@@ -294,7 +268,6 @@ Yes, but you'll need to adapt the codebase-framework docs. The current stack (Ne
 
 **1. Product Specification (PO Framework) ✅**
 - 5-Stage Specification Workflow (PRD → USM → USL → USD → UAT)
-- Task Management System
 - PM Playbooks & Templates
 - **Location:** [po-framework/](po-framework/)
 

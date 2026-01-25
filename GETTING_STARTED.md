@@ -133,7 +133,6 @@ If you want to understand how to **implement** your feature specs as working cod
 1. Read [po-framework/README.md](po-framework/README.md)
 2. Review the [sample feature](features/one-api-portal-mvp)
 3. Follow the 5-stage workflow: PRD → USM → USL → USD → UAT
-4. Use [task-management/](task-management/) for backlog management
 
 **Next Steps:**
 - Work with designers using [design-framework/](design-framework/)
@@ -190,11 +189,10 @@ If you want to understand how to **implement** your feature specs as working cod
 **Your Focus:** Do everything yourself efficiently
 
 **Start Here:**
-1. Use [task-management/](task-management/) to prioritize features
-2. Write quick PRDs for each feature
-3. Skip detailed USM/USL, go straight to USD for core features
-4. Create simple wireframes (ASCII is fine)
-5. Jump straight to code with [codebase-framework/QUICK_START.md](codebase-framework/QUICK_START.md)
+1. Write quick PRDs for each feature
+2. Skip detailed USM/USL, go straight to USD for core features
+3. Create simple wireframes (ASCII is fine)
+4. Jump straight to code with [codebase-framework/QUICK_START.md](codebase-framework/QUICK_START.md)
 
 **Time-Saving Tips:**
 - Use the [Integration Guide](codebase-framework/FRAMEWORK_INTEGRATION.md) to see USD → Code directly

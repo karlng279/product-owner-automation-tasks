@@ -2,7 +2,7 @@
 
 ## Overview
 
-The color system is based on **ShadCN's theming system** which uses CSS variables for maximum flexibility and automatic light/dark mode support.
+The color system is based on **ShadCN's theming system** and **Tailwind CSS v4** which uses modern CSS variables (Oklch color space) for maximum flexibility and automatic light/dark mode support.
 
 ## Color Palette
 
@@ -89,18 +89,26 @@ All colors automatically adapt to light and dark modes through CSS variables def
 ```css
 /* Light mode */
 :root {
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
-  --primary: 221.2 83.2% 53.3%;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  --primary: oklch(0.208 0.042 265.755);
   /* ... other colors */
 }
 
 /* Dark mode */
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
-  --primary: 217.2 91.2% 59.8%;
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  --primary: oklch(0.984 0.003 247.858);
   /* ... other colors */
+}
+
+/* Tailwind v4 Configuration */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  /* ... map other variables */
 }
 ```
 

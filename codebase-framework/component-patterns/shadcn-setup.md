@@ -24,15 +24,15 @@ Ensure you have:
 Run the initialization command:
 
 ```bash
-npx shadcn-ui@latest init
+npx shadcn@latest init
 ```
 
 ### Step 2: Answer Configuration Questions
 
 ```
 Would you like to use TypeScript? › Yes
-Which style would you like to use? › Default
-Which color would you like to use as base color? › Slate
+Which style would you like to use? › New York
+Which color would you like to use as base color? › Zinc
 Where is your global CSS file? › app/globals.css
 Would you like to use CSS variables for colors? › Yes
 Where is your tailwind.config.js located? › tailwind.config.ts
@@ -40,12 +40,16 @@ Configure the import alias for components: › @/components
 Configure the import alias for utils: › @/lib/utils
 ```
 
-**Recommended Answers:**
-- TypeScript: **Yes**
-- Style: **Default** (or New York for more compact)
-- Base color: **Slate** (neutral, professional)
-- CSS variables: **Yes** (easier theming)
-- Aliases: Use defaults (`@/components`, `@/lib/utils`)
+**Note:** With Tailwind v4, `shadcn` might simplify some of these choices or detect configuration automatically.
+
+### Step 3: Apply a Theme (Optional)
+
+You can apply a specific theme from a registry URL:
+
+```bash
+npx shadcn@latest add <registry-url>
+# Example: npx shadcn@latest add https://tweakcn.com/r/themes/modern-minimal.json
+```
 
 ---
 
@@ -57,13 +61,13 @@ Configure the import alias for utils: › @/lib/utils
 ```json
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "default",
+  "style": "new-york",
   "rsc": true,
   "tsx": true,
   "tailwind": {
     "config": "tailwind.config.ts",
     "css": "app/globals.css",
-    "baseColor": "slate",
+    "baseColor": "zinc",
     "cssVariables": true
   },
   "aliases": {
@@ -73,149 +77,53 @@ Configure the import alias for utils: › @/lib/utils
 }
 ```
 
-#### `tailwind.config.ts` (Updated)
+#### `tailwind.config.ts` (Optional in v4)
+
+With Tailwind v4, much of the configuration moves to CSS variables in `@theme` blocks within your CSS file. You might still have a minimal config for content paths if needed, or rely on automatic detection.
+
 ```typescript
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
   ],
-  theme: {
-    container: {
-      center: true,
-      padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
-    },
-    extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
-        secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
-        },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
-        popover: {
-          DEFAULT: "hsl(var(--popover))",
-          foreground: "hsl(var(--popover-foreground))",
-        },
-        card: {
-          DEFAULT: "hsl(var(--card))",
-          foreground: "hsl(var(--card-foreground))",
-        },
-      },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
-    },
-  },
-  plugins: [require("tailwindcss-animate")],
+  // ... rest of config if needed
 }
-
 export default config
 ```
 
-#### `app/globals.css` (Updated)
+#### `app/globals.css` (Updated for Tailwind v4)
 ```css
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-@layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
+@plugin "tailwindcss-animate";
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.129 0.042 264.695);
+  /* ... other vars in oklch ... */
+  --radius: 0.5rem;
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+.dark {
+  --background: oklch(0.129 0.042 264.695);
+  --foreground: oklch(0.984 0.003 247.858);
+  /* ... other vars in oklch ... */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* ... map all other variables ... */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
 }
 ```
 
@@ -241,12 +149,12 @@ This `cn()` utility merges Tailwind classes intelligently, handling conflicts.
 
 ```bash
 # Install specific components
-npx shadcn-ui@latest add button
-npx shadcn-ui@latest add card
-npx shadcn-ui@latest add input
+npx shadcn@latest add button
+npx shadcn@latest add card
+npx shadcn@latest add input
 
 # Install multiple at once
-npx shadcn-ui@latest add button card input select
+npx shadcn@latest add button card input select
 ```
 
 ### Component Files
@@ -255,9 +163,9 @@ Each component is added to `components/ui/`:
 
 ```
 components/ui/
-├── button.tsx          # After: npx shadcn-ui add button
-├── card.tsx            # After: npx shadcn-ui add card
-└── input.tsx           # After: npx shadcn-ui add input
+├── button.tsx          # After: npx shadcn add button
+├── card.tsx            # After: npx shadcn add card
+└── input.tsx           # After: npx shadcn add input
 ```
 
 ### Essential Components to Install
@@ -265,7 +173,7 @@ components/ui/
 For most projects, start with these:
 
 ```bash
-npx shadcn-ui@latest add button \
+npx shadcn@latest add button \
   card \
   input \
   label \
@@ -383,28 +291,12 @@ export function ThemeToggle() {
 
 ### Custom Colors
 
-Edit CSS variables in `app/globals.css`:
+Edit CSS variables in `app/globals.css`. With Tailwind v4, we use Oklch colors:
 
 ```css
 :root {
-  --primary: 262 83% 58%;  /* Purple */
-  --primary-foreground: 210 40% 98%;
-}
-```
-
-Or use Tailwind's color system:
-
-```typescript
-// tailwind.config.ts
-theme: {
-  extend: {
-    colors: {
-      primary: {
-        DEFAULT: '#8B5CF6',  // Purple
-        foreground: '#FFFFFF',
-      },
-    },
-  },
+  --primary: oklch(0.627 0.265 303.9);  /* Purple */
+  --primary-foreground: oklch(0.985 0 0);
 }
 ```
 
@@ -533,7 +425,7 @@ To update a component to the latest version:
 
 ```bash
 # Re-run add command
-npx shadcn-ui@latest add button
+npx shadcn@latest add button
 
 # It will ask if you want to overwrite
 ? Component button already exists. Would you like to overwrite? › (y/N)
@@ -545,7 +437,7 @@ npx shadcn-ui@latest add button
 
 1. **Install Essential Components**
    ```bash
-   npx shadcn-ui@latest add button card input form table
+   npx shadcn@latest add button card input form table
    ```
 
 2. **Set Up Theme Provider**
@@ -572,4 +464,4 @@ npx shadcn-ui@latest add button
 
 ---
 
-**Last Updated:** 2025-12-19
+**Last Updated:** 2026-01-25

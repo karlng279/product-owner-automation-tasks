@@ -333,7 +333,7 @@ The codebase framework uses a modern stack designed for rapid MVP development:
 **Proprietary License - All Rights Reserved**
 
 ```
-Copyright © 2025 Karl Nguyen
+Copyright © 2026 Karl Nguyen
 All Rights Reserved.
 
 This Product Owner Automation Framework and its contents are proprietary and confidential.

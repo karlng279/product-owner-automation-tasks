@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPO Automation Framework | Product Lifecycle Management</title>
+    
+    <!-- Fonts: IBM Plex Sans (Swiss Style) & JetBrains Mono (Dev) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['IBM Plex Sans', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        magenta: {
+                            DEFAULT: '#bd1874', // --color-magenta
+                            dark: '#a01462',    // --color-magenta-dark
+                        },
+                        teal: {
+                            DEFAULT: '#004d6c', // --color-teal
+                            accent: '#14b8a6',  // --color-teal-accent
+                        },
+                        background: '#ffffff',
+                        foreground: '#171717',
+                        slate: {
+                            850: '#1e293b', // Custom dark for footer
+                        }
+                    },
+                    keyframes: {
+                        'reveal-up': {
+                            '0%': { clipPath: 'inset(100% 0 0 0)', transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { clipPath: 'inset(0 0 0 0)', transform: 'translateY(0)', opacity: '1' },
+                        },
+                        'beam-h': {
+                            '0%': { left: '-200px', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { left: '100%', opacity: '0' },
+                        },
+                        'beam-v': {
+                            '0%': { top: '-200px', opacity: '0' },
+                            '10%': { opacity: '1' },
+                            '90%': { opacity: '1' },
+                            '100%': { top: '100%', opacity: '0' },
+                        }
+                    },
+                    animation: {
+                        'reveal': 'reveal-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'beam-h': 'beam-h 3s linear infinite',
+                        'beam-v': 'beam-v 3s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* MDS.CSS Variables & Custom Styles */
+        :root {
+            --primary-magenta: #bd1874;
+            --primary-teal: #004d6c;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #171717;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Grid Background Pattern */
+        .bg-grid {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #f1f5f9 1px, transparent 1px),
+                              linear-gradient(to bottom, #f1f5f9 1px, transparent 1px);
+        }
+
+        /* Glass Card Effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-color: rgba(189, 24, 116, 0.2); /* Magenta tint on hover */
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+
+        /* Beam Utilities */
+        .beam-h-container { position: absolute; top: 0; left: 0; right: 0; height: 1px; overflow: hidden; }
+        .beam-h { position: absolute; height: 1px; width: 200px; background: linear-gradient(90deg, transparent, var(--primary-magenta), transparent); }
+        
+        .beam-v-container { position: absolute; top: 0; bottom: 0; left: 0; width: 1px; overflow: hidden; }
+        .beam-v { position: absolute; width: 1px; height: 200px; background: linear-gradient(180deg, transparent, var(--primary-magenta), transparent); }
+
+        /* Animation Delays */
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+
+        /* Typography Utilities */
+        .text-balance { text-wrap: balance; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="relative min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-slate-100/50 bg-white/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-magenta rounded-md flex items-center justify-center text-white font-bold font-mono">AI</div>
+                    <span class="font-bold text-lg tracking-tight text-slate-900">Product Development Workflow</span>
+                </div>
+                
+                <!-- Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#workflow" class="text-sm font-medium text-slate-600 hover:text-magenta transition-colors">Workflow</a>
+                    <a href="#frameworks" class="text-sm font-medium text-slate-600 hover:text-magenta transition-colors">Frameworks</a>
+                    <a href="https://github.com/karlng279/product-owner-automation-tasks" target="_blank" rel="noopener noreferrer" class="text-sm font-medium text-slate-600 hover:text-magenta transition-colors inline-flex items-center gap-1">
+                        Docs
+                        <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+                
+                <!-- CTA -->
+                <a href="https://github.com/karlng279/ppo-automation-tasks-otsv" class="bg-slate-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-slate-800 transition-colors">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <!-- Background Grid -->
+        <div class="absolute inset-0 bg-grid -z-10 opacity-60"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white -z-10"></div>
+        
+        <!-- Animated Beams -->
+        <div class="beam-h-container top-1/4 opacity-30"><div class="beam-h animate-beam-h" style="animation-duration: 4s;"></div></div>
+        <div class="beam-h-container bottom-1/3 opacity-30"><div class="beam-h animate-beam-h" style="animation-duration: 7s; animation-delay: 2s;"></div></div>
+        <div class="beam-v-container left-1/4 opacity-30"><div class="beam-v animate-beam-v" style="animation-duration: 5s;"></div></div>
+        <div class="beam-v-container right-1/3 opacity-30"><div class="beam-v animate-beam-v" style="animation-duration: 6s; animation-delay: 1s;"></div></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Badge -->
+            <div class="inline-flex items-center px-3 py-1 rounded-full border border-teal-unique/20 bg-teal-accent/10 text-teal-unique text-xs font-semibold uppercase tracking-wider mb-6 animate-reveal">
+                <span class="w-2 h-2 rounded-full bg-teal-accent mr-2 animate-pulse"></span>
+                v1.0.0 Stable
+            </div>
+            
+            <!-- Headline -->
+            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 mb-6 animate-reveal delay-100 text-balance">
+                From Ideas to Release<br> 
+                <span class="text-magenta">AI-Ready Product Workflow</span>
+            </h1>
+            
+            <!-- Subhead -->
+            <p class="mt-4 text-xl text-slate-600 max-w-2xl mx-auto mb-10 animate-reveal delay-200">
+                A structured end-to-end workflow managing discovery to deployment.<br><br>
+                <span class="font-mono text-sm bg-slate-100 px-1 py-0.5 rounded text-magenta">Product</span> → 
+                <span class="font-mono text-sm bg-slate-100 px-1 py-0.5 rounded text-magenta">Design</span> → 
+                <span class="font-mono text-sm bg-slate-100 px-1 py-0.5 rounded text-magenta">Code</span>
+            </p>
+            
+            <!-- CTAs -->
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-reveal delay-300">
+                <a href="https://github.com/karlng279/product-owner-automation-tasks/blob/main/GETTING_STARTED.md" class="group relative inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-magenta hover:bg-magenta-dark rounded-lg transition-all shadow-lg hover:shadow-xl hover:shadow-magenta/20">
+                    Get Started
+                    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+                <a href="https://github.com/karlng279/product-owner-automation-tasks" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-slate-700 bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 rounded-lg transition-all shadow-sm">
+                    Read Documentation
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Workflow Infographic Section -->
+    <section id="workflow" class="py-20 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 mb-4">The Automation Pipeline</h2>
+                <p class="text-slate-600 max-w-2xl mx-auto">From abstract idea to deployed production code in a single streamlined flow.</p>
+            </div>
+
+            <!-- Infographic Container -->
+            <div class="relative">
+                <!-- Connecting Line (Desktop) -->
+                <div class="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-slate-200 -translate-y-1/2 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                    <!-- Step 1: PO -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center hover:border-magenta transition-colors duration-300">
+                        <div class="w-16 h-16 mx-auto bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 border-4 border-white shadow-sm group-hover:scale-110 transition-transform">
+                            <!-- Icon: Document/Plan -->
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">1. Discovery</h3>
+                        <p class="text-sm text-slate-500 mb-3">PRD, Stories & Acceptance Criteria</p>
+                        <div class="inline-block px-2 py-1 bg-blue-100 text-blue-700 text-xs font-mono rounded">/po-framework</div>
+                    </div>
+
+                    <!-- Step 2: Design -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center hover:border-magenta transition-colors duration-300">
+                        <div class="w-16 h-16 mx-auto bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mb-4 border-4 border-white shadow-sm group-hover:scale-110 transition-transform">
+                            <!-- Icon: Layout/Wireframe -->
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">2. Design</h3>
+                        <p class="text-sm text-slate-500 mb-3">Wireframes, Components & States</p>
+                        <div class="inline-block px-2 py-1 bg-purple-100 text-purple-700 text-xs font-mono rounded">/design-framework</div>
+                    </div>
+
+                    <!-- Step 3: Code -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center hover:border-magenta transition-colors duration-300">
+                        <div class="w-16 h-16 mx-auto bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mb-4 border-4 border-white shadow-sm group-hover:scale-110 transition-transform">
+                            <!-- Icon: Code -->
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2">3. Implementation</h3>
+                        <p class="text-sm text-slate-500 mb-3">Next.js 14, Tailwind & ShadCN</p>
+                        <div class="inline-block px-2 py-1 bg-teal-100 text-teal-700 text-xs font-mono rounded">/codebase-framework</div>
+                    </div>
+
+                    <!-- Step 4: Verify -->
+                    <div class="group relative bg-white p-6 rounded-xl shadow-sm border border-slate-200 text-center hover:border-magenta transition-colors duration-300">
+                        <div class="w-16 h-16 mx-auto bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-4 border-4 border-white shadow-sm group-hover:scale-110 transition-transform">
+                            <!-- Icon: Check/Verify -->
+                            <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 flex items-center justify-center gap-2">
+                            4. Verification 
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 border border-yellow-200">
+                                In Progress
+                            </span>
+                        </h3>
+                        <p class="text-sm text-slate-500 mb-3">UAT Scenarios & auto-tests</p>
+                        <div class="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs font-mono rounded">/verification</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Frameworks Grid -->
+    <section id="frameworks" class="py-20 relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute -right-20 top-40 w-96 h-96 bg-magenta/5 rounded-full blur-3xl -z-10"></div>
+        <div class="absolute -left-20 bottom-40 w-96 h-96 bg-teal/5 rounded-full blur-3xl -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl relative">
+                    <!-- Featured Badge (Moved to PO) -->
+                    <div class="absolute top-0 right-0 -mt-2 -mr-2 bg-gradient-to-r from-magenta to-pink-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg transform rotate-12">
+                        Core Info
+                    </div>
+                    <div class="h-12 w-12 bg-slate-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-2xl">📋</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">PO Framework</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        A rigorous 5-stage specification workflow. Convert vague ideas into crystal-clear requirement documents.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500 mb-6">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-magenta rounded-full mr-2"></span>PRD & Strategy</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-magenta rounded-full mr-2"></span>User Story Mapping</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-magenta rounded-full mr-2"></span>MoSCoW Prioritization</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="h-12 w-12 bg-slate-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-2xl">🎨</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Design Framework</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        Text-based design system that bridges the gap between requirements and code without complex tools.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500 mb-6">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-teal rounded-full mr-2"></span>ASCII Wireframes</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-teal rounded-full mr-2"></span>Component Specs</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-teal rounded-full mr-2"></span>Interaction Flows</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="h-12 w-12 bg-slate-100 rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-2xl">⚡</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Codebase Framework</h3>
+                    <p class="text-slate-600 mb-6 leading-relaxed">
+                        Production-ready Next.js templates. Skip the boilerplate and start building features immediately.
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-500 mb-6">
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Next.js 14 App Router</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Tailwind & ShadCN</li>
+                        <li class="flex items-center"><span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></span>Dummy Data Pattern</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PO Framework Deep Dive -->
+    <section class="py-20 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                     <div class="inline-flex items-center px-3 py-1 rounded-full bg-magenta/10 text-magenta text-xs font-semibold mb-6">
+                        Step 1
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">The 5 Stages of Discovery</h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        The PO Framework systematically breaks down features from high-level requirements to testable acceptance criteria through five progressive stages.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-16 text-center">Stage 1</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">Product Requirements (PRD)</h4>
+                                 <p class="text-sm text-slate-500">Defines the problem, goals, and success metrics.</p>
+                             </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-16 text-center">Stage 2</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">User Story Map (USM)</h4>
+                                 <p class="text-sm text-slate-500">Visual mapping of user activities and steps.</p>
+                             </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-16 text-center">Stage 3</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">User Story List (USL)</h4>
+                                 <p class="text-sm text-slate-500">Prioritized backlog using MoSCoW method.</p>
+                             </div>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-16 text-center">Stage 4</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">User Story Details (USD)</h4>
+                                 <p class="text-sm text-slate-500">Detailed acceptance criteria per story.</p>
+                             </div>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-16 text-center">Stage 5</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">User Acceptance Tests (UAT)</h4>
+                                 <p class="text-sm text-slate-500">BDD scenarios (Given/When/Then).</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Visual Decoration for PO -->
+                <div class="relative h-full flex items-center justify-center bg-white rounded-2xl border border-slate-200 shadow-lg p-8">
+                     <div class="absolute inset-0 bg-blue-50/50 rounded-2xl"></div>
+                     <div class="relative z-10 w-full font-mono text-sm text-slate-600 bg-slate-900 rounded-lg p-6 shadow-2xl">
+                        <div class="flex space-x-2 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                            <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        </div>
+                        <p class="text-blue-400 mb-2"># features/one-api/po/usd/ST-001.md</p>
+                        <p class="text-white">## Acceptance Criteria</p>
+                        <br>
+                        <p class="text-green-400">- [ ] User can view list of API keys</p>
+                        <p class="text-green-400">- [ ] User can click "Create New Key"</p>
+                        <p class="text-green-400">- [ ] Pagination works for > 10 items</p>
+                        <br>
+                        <p class="text-slate-400"># Validated against PRD requirements</p>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Framework Deep Dive -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:flex-row-reverse">
+                 <!-- Visual Decoration for Design (Left on LG) -->
+                 <div class="lg:order-1 relative h-full flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-200 shadow-lg p-8">
+                     <div class="absolute inset-0 bg-purple-50/50 rounded-2xl"></div>
+                     <div class="relative z-10 w-full font-mono text-sm text-slate-600 bg-white rounded-lg p-6 shadow-xl border border-slate-200">
+                        <div class="flex justify-between border-b pb-2 mb-4">
+                            <span class="font-bold">WF-001: Login Screen</span>
+                            <span class="text-xs bg-slate-100 px-2 py-1 rounded">Text Wireframe</span>
+                        </div>
+                        <pre class="whitespace-pre text-xs leading-relaxed text-slate-700">
++------------------------------+
+|  [ Logo ]                    |
+|                              |
+|  Email                       |
+|  [_____________]             |
+|                              |
+|  Password                    |
+|  [_____________]             |
+|                              |
+|  [ Sign In ]                 |
+|                              |
+|  [x] Remember me             |
++------------------------------+</pre>
+                        <div class="mt-4 pt-4 border-t text-xs">
+                            <span class="text-purple-600 font-bold">Mapped to:</span> COMP-001, INT-001
+                        </div>
+                     </div>
+                </div>
+
+                <div class="lg:order-2">
+                     <div class="inline-flex items-center px-3 py-1 rounded-full bg-teal/10 text-teal text-xs font-semibold mb-6">
+                        Step 2
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Text-Based Design System</h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        Create comprehensive UI/UX specifications without opening a design tool. The Design Framework links every pixel back to a user requirement.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">1</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Wireframes (WF-XXX)</h4>
+                                <p class="text-sm text-slate-500 mt-1">ASCII visual layouts and element descriptions mapped to acceptance criteria.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">2</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Component Specs (COMP-XXX)</h4>
+                                <p class="text-sm text-slate-500 mt-1">Detailed configuration for ShadCN components and Tanstack tables.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center text-purple-600 font-bold">3</div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Interactions (INT-XXX)</h4>
+                                <p class="text-sm text-slate-500 mt-1">State diagrams and clear user flows for every interactive element.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Codebase Framework Deep Dive -->
+    <section class="py-20 bg-slate-50 border-y border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                     <div class="inline-flex items-center px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 text-xs font-semibold mb-6">
+                        Step 3
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-6">Rapid Frontend Prototyping</h2>
+                    <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                        Build working Next.js applications with dummy data first. Validate UX with stakeholders before investing in backend infrastructure.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-20 text-center">Config</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">Next.js 14+ Starter</h4>
+                                 <p class="text-sm text-slate-500">App router, TypeScript, and Tailwind pre-configured.</p>
+                             </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-20 text-center">Data</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">Dummy JSON Backend</h4>
+                                 <p class="text-sm text-slate-500">Zero-database setup using local JSON files for data.</p>
+                             </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-20 text-center">UI</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">ShadCN Components</h4>
+                                 <p class="text-sm text-slate-500">Beautiful, accessible components copied from specs.</p>
+                             </div>
+                        </div>
+                         <div class="bg-white p-4 rounded-lg border border-slate-200 shadow-sm flex items-start">
+                             <div class="bg-blue-100 text-blue-700 font-bold px-2 py-1 rounded text-xs mt-1 mr-3 w-20 text-center">Deploy</div>
+                             <div>
+                                 <h4 class="font-bold text-slate-900">Vercel / Netlify</h4>
+                                 <p class="text-sm text-slate-500">One-click static deployment for stakeholder demos.</p>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Visual Decoration for Codebase -->
+                <div class="relative h-full flex items-center justify-center bg-white rounded-2xl border border-slate-200 shadow-lg p-8">
+                     <div class="absolute inset-0 bg-blue-50/50 rounded-2xl"></div>
+                     <div class="relative z-10 w-full font-mono text-xs text-slate-300 bg-slate-900 rounded-lg shadow-2xl overflow-hidden leading-relaxed">
+                        <div class="flex items-center px-4 py-2 bg-slate-800 border-b border-slate-700">
+                             <div class="flex space-x-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div class="ml-4 text-slate-400">page.tsx</div>
+                        </div>
+                        <div class="p-6">
+                            <p><span class="text-pink-400">import</span> { <span class="text-yellow-300">Button</span> } <span class="text-pink-400">from</span> <span class="text-green-300">'@/components/ui/button'</span></p>
+                            <p><span class="text-pink-400">import</span> { <span class="text-yellow-300">DataTable</span> } <span class="text-pink-400">from</span> <span class="text-green-300">'@/components/data-table'</span></p>
+                            <p><span class="text-pink-400">import</span> <span class="text-yellow-300">users</span> <span class="text-pink-400">from</span> <span class="text-green-300">'@/data/users.json'</span></p>
+                            <br>
+                            <p><span class="text-blue-400">export default function</span> <span class="text-yellow-300">UsersPage</span>() {</p>
+                            <p class="pl-4"><span class="text-pink-400">return</span> (</p>
+                            <p class="pl-8">&lt;<span class="text-yellow-300">div</span> <span class="text-green-300">className</span>=<span class="text-green-300">"p-8"</span>&gt;</p>
+                            <p class="pl-12">&lt;<span class="text-yellow-300">h1</span>&gt;User Management&lt;/<span class="text-yellow-300">h1</span>&gt;</p>
+                            <p class="pl-12">&lt;<span class="text-yellow-300">DataTable</span> <span class="text-green-300">data</span>={users} /&gt;</p>
+                            <p class="pl-12">&lt;<span class="text-yellow-300">Button</span>&gt;Add User&lt;/<span class="text-yellow-300">Button</span>&gt;</p>
+                            <p class="pl-8">&lt;/<span class="text-yellow-300">div</span>&gt;</p>
+                            <p class="pl-4">)</p>
+                            <p>}</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-bold text-slate-900 tracking-tight">PPO Automation Framework</span>
+                <p class="text-sm text-slate-500 mt-1">© 2026 Karl Nguyen. All rights reserved.</p>
+            </div>
+            <div class="text-slate-500 text-sm">
+                Design & Develop by <a href="https://karl-nguyen.com/" target="_blank" rel="noopener noreferrer" class="text-magenta hover:text-magenta-dark font-medium transition-colors">Karl Nguyen</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

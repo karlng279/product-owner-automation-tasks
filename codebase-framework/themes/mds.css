@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+@theme {
+    /* Primary brand colors */
+    --color-magenta: #bd1874;
+    --color-magenta-dark: #a01462;
+    --color-teal: #004d6c;
+    --color-teal-accent: #14b8a6;
+
+    /* Background & Foreground */
+    --color-background: #ffffff;
+    --color-foreground: #171717;
+}
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+    --primary-magenta: #bd1874;
+    --primary-teal: #004d6c;
+    --accent-teal: #14b8a6;
+
+    /* Shadcn UI Variables */
+    --radius: 0.5rem;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 326 77% 42%;
+    /* Magenta */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+}
+
+body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Animations */
+@keyframes reveal-up {
+    0% {
+        clip-path: inset(100% 0 0 0);
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        clip-path: inset(0 0 0 0);
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.animate-reveal {
+    opacity: 0;
+    animation: reveal-up 1.0s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scroll Triggered Animation */
+.scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Animation delays */
+.delay-100 {
+    animation-delay: 0.1s;
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+    transition-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+    transition-delay: 0.3s;
+}
+
+.delay-500 {
+    animation-delay: 0.5s;
+    transition-delay: 0.5s;
+}
+
+/* Beams */
+@keyframes beam-h {
+    0% {
+        left: -200px;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+@keyframes beam-v {
+    0% {
+        top: -200px;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+.beam-h {
+    position: absolute;
+    height: 1px;
+    width: 200px;
+    background: linear-gradient(90deg, transparent, var(--primary-magenta), transparent);
+    z-index: 10;
+    opacity: 0;
+}
+
+.beam-v {
+    position: absolute;
+    width: 1px;
+    height: 200px;
+    background: linear-gradient(180deg, transparent, var(--primary-magenta), transparent);
+    z-index: 10;
+    opacity: 0;
+}
+
+/* Marquee animation */
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    animation: marquee-scroll 20s linear infinite;
+}
+
+/* Mask for soft fade edges */
+.mask-linear-fade {
+    mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+/* Duration utility for transition */
+.duration-400 {
+    transition-duration: 400ms;
+}

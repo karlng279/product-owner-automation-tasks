@@ -2,26 +2,53 @@
 
 ## Overview
 
-The color system is based on **ShadCN's theming system** and **Tailwind CSS v4** which uses modern CSS variables (Oklch color space) for maximum flexibility and automatic light/dark mode support.
+The color system is based on **ShadCN's theming system** and **Tailwind CSS v4** which uses modern CSS variables for maximum flexibility and automatic light/dark mode support. The **MDS Theme** provides the brand colors and design tokens.
+
+## MDS Brand Colors
+
+The MDS (Modern Design System) theme defines these brand colors:
+
+### Primary Brand: Magenta
+- **Hex:** `#bd1874`
+- **Dark variant:** `#a01462`
+- **HSL:** `326 77% 42%`
+- **CSS Variable:** `var(--primary-magenta)` or `var(--primary)`
+- **Tailwind:** `bg-magenta`, `text-magenta`
+- **Usage:** Primary CTAs, buttons, links, active states, brand highlights
+
+### Secondary Brand: Teal
+- **Hex:** `#004d6c`
+- **CSS Variable:** `var(--primary-teal)`
+- **Tailwind:** `bg-teal`, `text-teal`
+- **Usage:** Navigation, headers, secondary actions, professional/corporate contexts
+
+### Accent: Teal Accent
+- **Hex:** `#14b8a6`
+- **CSS Variable:** `var(--accent-teal)` or `var(--teal-accent)`
+- **Tailwind:** `text-teal-accent`
+- **Usage:** Highlights, success states, positive indicators, decorative accents
+
+---
 
 ## Color Palette
 
 ### Primary Colors
 
-**Primary** - Main brand color, used for primary actions and emphasis
+**Primary** - Main brand color (Magenta), used for primary actions and emphasis
 - CSS Variable: `var(--primary)`
 - Foreground: `var(--primary-foreground)`
+- Hex: `#bd1874`
 - Usage: Primary buttons, links, active states
 
-**Secondary** - Supporting brand color
+**Secondary** - Supporting brand color (Teal)
 - CSS Variable: `var(--secondary)`
 - Foreground: `var(--secondary-foreground)`
-- Usage: Secondary buttons, subtle emphasis
+- Usage: Secondary buttons, subtle emphasis, navigation
 
-**Accent** - Highlight color for special emphasis
+**Accent** - Highlight color for special emphasis (Teal Accent)
 - CSS Variable: `var(--accent)`
 - Foreground: `var(--accent-foreground)`
-- Usage: Call-to-action elements, highlights
+- Usage: Call-to-action elements, highlights, success indicators
 
 ### Neutral Colors
 
@@ -85,30 +112,49 @@ The color system is based on **ShadCN's theming system** and **Tailwind CSS v4**
 
 All colors automatically adapt to light and dark modes through CSS variables defined in the theme.
 
-**Implementation:**
+**MDS Theme Implementation:**
 ```css
-/* Light mode */
+@import "tailwindcss";
+
+/* Tailwind v4 Theme Configuration */
+@theme {
+    /* MDS Brand colors */
+    --color-magenta: #bd1874;
+    --color-magenta-dark: #a01462;
+    --color-teal: #004d6c;
+    --color-teal-accent: #14b8a6;
+
+    /* Background & Foreground */
+    --color-background: #ffffff;
+    --color-foreground: #171717;
+}
+
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  /* ... other colors */
-}
+    --background: #ffffff;
+    --foreground: #171717;
+    --primary-magenta: #bd1874;
+    --primary-teal: #004d6c;
+    --accent-teal: #14b8a6;
 
-/* Dark mode */
-.dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.984 0.003 247.858);
-  /* ... other colors */
-}
-
-/* Tailwind v4 Configuration */
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  /* ... map other variables */
+    /* ShadCN UI Variables - Magenta Primary */
+    --radius: 0.5rem;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 326 77% 42%;  /* Magenta */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
 }
 ```
 
@@ -283,12 +329,48 @@ Before finalizing a design:
 - Error Message: red text (not using semantic color)
 ```
 
+## MDS Brand Color Usage Guide
+
+### When to Use Magenta (Primary)
+- Primary call-to-action buttons
+- Important links and navigation highlights
+- Active/selected states
+- Form submit buttons
+- Brand emphasis elements
+- Hero section CTAs
+
+### When to Use Teal (Secondary)
+- Navigation bars and headers
+- Secondary buttons and actions
+- Professional/corporate contexts
+- Section backgrounds (with low opacity)
+- Footer elements
+- Informational contexts
+
+### When to Use Teal Accent
+- Success messages and indicators
+- Positive state highlights
+- Decorative accents and borders
+- Progress indicators
+- Hover states on teal elements
+- Interactive highlight effects
+
+### Color Pairing Guidelines
+
+**Magenta + White:** High contrast for CTAs
+**Teal + White:** Professional headers
+**Magenta + Teal:** Complementary brand pairing (use sparingly)
+**Teal Accent + Dark backgrounds:** Vibrant highlights
+
+---
+
 ## Related Rules
 
 - [Accessibility](accessibility.md) - Color contrast requirements
 - [Component Standards](component-standards.md) - Color usage in components
 - [Typography](typography.md) - Text color standards
+- [Animation System](animation-system.md) - MDS animation patterns
 
 ---
 
-**Remember:** Consistent color usage creates visual hierarchy and improves usability. Always use the defined color system.
+**Remember:** Consistent color usage creates visual hierarchy and improves usability. Always use the defined MDS color system for brand consistency.

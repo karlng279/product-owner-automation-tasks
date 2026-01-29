@@ -253,6 +253,50 @@ Empty State Container (text-center py-12)
 └── Action Button (optional)
 ```
 
+## Component Animations (MDS Theme)
+
+### Button Animations
+- **Hover:** `transition-colors duration-200` or `hover:bg-primary/90`
+- **Active/Click:** `active:scale-95` (optional, 100ms)
+- **Loading:** Spinner with `animate-spin`
+
+### Card Animations
+- **Entry:** `.scroll-reveal` for cards appearing on scroll
+- **Hover:** `hover:shadow-lg transition-shadow duration-200`
+- **Interactive:** `hover:-translate-y-1 transition-transform duration-200`
+
+### Modal/Dialog Animations
+- **Open:** Fade in with scale from 95% (200ms)
+- **Close:** Fade out with scale to 95% (150ms)
+- **Backdrop:** `animate-in fade-in-0` (Tailwind animate plugin)
+
+### Navigation Animations
+- **Mobile menu:** Slide from left/right (300ms)
+- **Dropdown:** `animate-in fade-in-0 slide-in-from-top-2`
+- **Active indicator:** Underline slide transition
+
+### Form Field Animations
+- **Focus:** `transition-all duration-150` for ring/border
+- **Error shake:** Optional `animate-shake` (300ms)
+- **Success:** Check icon scale in
+
+### Toast/Notification Animations
+- **Enter:** Slide in from edge + fade (300ms)
+- **Exit:** Slide out + fade (200ms)
+
+### Page Entry Animations
+- **Hero content:** `.animate-reveal` with staggered delays
+- **Section content:** `.scroll-reveal` triggered by viewport entry
+- **Staggered items:** Use `.delay-100`, `.delay-200`, `.delay-300`
+
+### Animation Timing
+- **Default easing:** `cubic-bezier(0.16, 1, 0.3, 1)` (ease-out-expo)
+- **Quick interactions:** 150-200ms
+- **Content reveals:** 500ms-1s
+- **Decorative:** 1s+ for ambient effects
+
+---
+
 ## Quality Gates
 
 - [ ] Components use ShadCN variants
@@ -261,7 +305,9 @@ Empty State Container (text-center py-12)
 - [ ] Accessibility attributes present
 - [ ] Responsive behavior specified
 - [ ] Consistent with other components
+- [ ] Animation timing follows MDS guidelines
+- [ ] Reduced motion alternatives considered
 
 ---
 
-**Reference:** [ShadCN UI Docs](https://ui.shadcn.com), [Tanstack Table Docs](https://tanstack.com/table)
+**Reference:** [ShadCN UI Docs](https://ui.shadcn.com), [Tanstack Table Docs](https://tanstack.com/table), [Animation System](animation-system.md)

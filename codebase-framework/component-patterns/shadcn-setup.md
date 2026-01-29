@@ -42,14 +42,55 @@ Configure the import alias for utils: › @/lib/utils
 
 **Note:** With Tailwind v4, `shadcn` might simplify some of these choices or detect configuration automatically.
 
-### Step 3: Apply a Theme (Optional)
+### Step 3: Apply MDS Theme
 
-You can apply a specific theme from a registry URL:
+The MDS (Modern Design System) theme provides brand colors and animations. To apply it:
+
+#### Option A: Replace globals.css (Recommended for new projects)
+
+```bash
+# Copy MDS theme to your project
+cp codebase-framework/themes/mds.css src/app/globals.css
+```
+
+#### Option B: Merge with existing globals.css
+
+Copy the following sections from `codebase-framework/themes/mds.css` into your existing `globals.css`:
+
+1. **@theme block** - Tailwind v4 color tokens
+2. **:root variables** - CSS custom properties
+3. **Animation keyframes** - reveal-up, fade-in, beam effects
+4. **Utility classes** - scroll-reveal, delay utilities
+
+#### Option C: Apply external theme (Alternative)
 
 ```bash
 npx shadcn@latest add <registry-url>
 # Example: npx shadcn@latest add https://tweakcn.com/r/themes/modern-minimal.json
 ```
+
+---
+
+## MDS Theme Features
+
+### Brand Colors
+- **Magenta** (`#bd1874`) - Primary CTA color
+- **Teal** (`#004d6c`) - Secondary/navigation color
+- **Teal Accent** (`#14b8a6`) - Highlight color
+
+### Animations
+- **animate-reveal** - Clip-path reveal with upward motion
+- **scroll-reveal** - Viewport-triggered fade in
+- **delay-100/200/300/500** - Staggered animation delays
+- **beam-h/beam-v** - Decorative beam effects
+- **animate-marquee** - Continuous scroll animation
+
+### Utilities
+- **mask-linear-fade** - Soft edge masking
+- **duration-400** - Extended transition duration
+- Custom scrollbar styling
+
+See [theming.md](theming.md) for detailed usage.
 
 ---
 
@@ -454,6 +495,8 @@ npx shadcn@latest add button
 
 **Related Documentation:**
 - [ShadCN Usage Guide](shadcn-usage.md)
+- [MDS Theming Guide](theming.md)
+- [Animation Patterns](animations.md)
 - [Component Patterns](README.md)
 - [Quick Start](../QUICK_START.md)
 
@@ -462,6 +505,8 @@ npx shadcn@latest add button
 - [Radix UI](https://www.radix-ui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
 
+**Theme File:** `codebase-framework/themes/mds.css`
+
 ---
 
-**Last Updated:** 2026-01-25
+**Last Updated:** 2026-01-29

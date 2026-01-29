@@ -758,8 +758,102 @@ import { AlertCircle } from 'lucide-react'
 
 ---
 
+## MDS Theme Integration
+
+### Using Brand Colors with ShadCN
+
+The MDS theme overrides ShadCN's primary color with magenta. All default buttons and primary elements use the brand color automatically.
+
+```typescript
+// Default button uses magenta primary
+<Button>Primary Action</Button>
+
+// Using brand colors directly
+<Button className="bg-magenta hover:bg-magenta-dark">
+  Brand Button
+</Button>
+
+// Secondary with teal
+<Button className="bg-teal text-white hover:bg-teal/90">
+  Secondary Action
+</Button>
+```
+
+### Adding Brand Variants
+
+Extend button variants for brand-specific styling:
+
+```typescript
+// In components/ui/button.tsx
+const buttonVariants = cva(
+  "...",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        brand: "bg-magenta text-white hover:bg-magenta-dark",
+        brandOutline: "border-2 border-magenta text-magenta hover:bg-magenta hover:text-white",
+        teal: "bg-teal text-white hover:bg-teal/90",
+        // ... existing variants
+      },
+    },
+  }
+)
+```
+
+### Cards with Brand Accents
+
+```typescript
+<Card className="border-l-4 border-l-magenta">
+  <CardHeader>
+    <CardTitle className="text-teal">Featured</CardTitle>
+  </CardHeader>
+  <CardContent>
+    <p>Content with brand accent</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Learn More</Button>
+  </CardFooter>
+</Card>
+```
+
+### Badges with Brand Colors
+
+```typescript
+// Status badge with teal accent
+<Badge className="bg-teal-accent/20 text-teal-accent border-teal-accent">
+  Active
+</Badge>
+
+// Brand badge
+<Badge className="bg-magenta text-white">
+  New
+</Badge>
+```
+
+### Alerts with Brand Styling
+
+```typescript
+// Success with teal accent
+<Alert className="border-teal-accent bg-teal-accent/10">
+  <CheckCircle className="h-4 w-4 text-teal-accent" />
+  <AlertTitle className="text-teal-accent">Success</AlertTitle>
+  <AlertDescription>Operation completed successfully.</AlertDescription>
+</Alert>
+
+// Brand highlight
+<Alert className="border-magenta bg-magenta/10">
+  <AlertTitle className="text-magenta">Important</AlertTitle>
+  <AlertDescription>Brand-highlighted message.</AlertDescription>
+</Alert>
+```
+
+---
+
 **Related Documentation:**
 - [ShadCN Setup](shadcn-setup.md)
+- [MDS Theming Guide](theming.md)
+- [Animation Patterns](animations.md)
 - [Form Patterns](form-patterns.md)
 - [Component Patterns](README.md)
 
@@ -769,4 +863,4 @@ import { AlertCircle } from 'lucide-react'
 
 ---
 
-**Last Updated:** 2025-12-19
+**Last Updated:** 2026-01-29

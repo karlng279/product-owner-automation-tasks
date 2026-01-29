@@ -28,6 +28,7 @@ design-framework/
 │
 ├── design-rules/                  # Design system rules
 │   ├── color-system.md
+│   ├── animation-system.md        # MDS animation patterns
 │   ├── spacing-system.md
 │   ├── typography.md
 │   ├── layout-system.md
@@ -189,14 +190,15 @@ State Diagram:
 
 The **design-rules/** folder contains the design system rules that apply to all stages:
 
-1. **Color System:** ShadCN theme colors, CSS variables, semantic usage
-2. **Spacing System:** 4px base unit, spacing scale, component spacing
-3. **Typography:** Text sizes, font weights, heading hierarchy
-4. **Layout System:** Container widths, responsive breakpoints, grid/flexbox
-5. **Component Standards:** ShadCN component variants, sizing, states
-6. **Accessibility:** WCAG AA compliance, keyboard nav, screen readers
-7. **Responsive Design:** Mobile-first, breakpoint behavior, adaptive layouts
-8. **Naming Conventions:** Component, file, ID naming standards
+1. **Color System:** MDS brand colors (Magenta, Teal, Teal Accent), ShadCN theme colors, CSS variables
+2. **Animation System:** MDS animations (reveal-up, scroll-reveal, beams, marquee), timing functions
+3. **Spacing System:** 4px base unit, spacing scale, component spacing
+4. **Typography:** Text sizes, font weights, heading hierarchy
+5. **Layout System:** Container widths, responsive breakpoints, grid/flexbox
+6. **Component Standards:** ShadCN component variants, sizing, states, animations
+7. **Accessibility:** WCAG AA compliance, keyboard nav, screen readers, reduced motion
+8. **Responsive Design:** Mobile-first, breakpoint behavior, adaptive layouts
+9. **Naming Conventions:** Component, file, ID naming standards
 
 **All wireframes, component specs, and interactions must follow these rules.**
 

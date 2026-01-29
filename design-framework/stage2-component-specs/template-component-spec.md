@@ -380,6 +380,32 @@ Card (ShadCN)
 - [e.g., "Button variant: default for primary action"]
 - [e.g., "Input height: h-10 (40px)"]
 
+### Animation System (MDS Theme)
+**Entry Animation:**
+- Animation: [e.g., "animate-reveal", "scroll-reveal", "fade-in", "none"]
+- Trigger: [e.g., "on-load", "on-scroll", "on-mount"]
+- Duration: [e.g., "1.0s", "500ms"]
+- Delay: [e.g., "delay-100", "delay-200", "none"]
+- Easing: [e.g., "cubic-bezier(0.16, 1, 0.3, 1)", "ease-out"]
+
+**Hover/Interaction Animation:**
+- Effect: [e.g., "shadow increase", "scale up", "background transition"]
+- Duration: [e.g., "200ms", "150ms"]
+- Properties: [e.g., "transition-shadow", "transition-transform", "transition-colors"]
+
+**State Transition Animation:**
+- Loading: [e.g., "spinner animate-spin", "skeleton pulse"]
+- Success: [e.g., "check icon scale-in", "green border flash"]
+- Error: [e.g., "shake animation", "red border pulse"]
+
+**Reduced Motion:**
+- Alternative: [e.g., "Instant state change, no animation"]
+
+**Animation Rules Applied:**
+- [Reference to design-rules/animation-system.md section]
+- [e.g., "Uses MDS reveal-up for page entry"]
+- [e.g., "Staggered delays for card grid"]
+
 ---
 
 ## 10. Traceability

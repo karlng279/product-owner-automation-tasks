@@ -75,10 +75,16 @@ codebase-framework/
 │   ├── naming-conventions.md        # File and folder naming rules
 │   └── file-structure-example.md    # Complete example structure
 │
+├── themes/                           # CSS theme files
+│   ├── README.md                     # Theme documentation
+│   └── mds.css                       # MDS (Modern Design System) theme
+│
 ├── component-patterns/               # React component implementation
 │   ├── README.md                     # Component architecture
 │   ├── shadcn-setup.md               # Installing ShadCN UI
 │   ├── shadcn-usage.md               # Using ShadCN components
+│   ├── theming.md                    # MDS theme integration guide
+│   ├── animations.md                 # MDS animation patterns
 │   ├── form-patterns.md              # Form handling patterns
 │   ├── table-patterns.md             # TanStack Table patterns
 │   ├── layout-components.md          # Headers, navigation, footers
@@ -445,4 +451,4 @@ Requirements → Design → Frontend + Dummy Data → Deploy
 **Framework:** Codebase Framework
 **Purpose:** Rapid frontend prototyping with dummy data
 **Status:** In active development
-**Last Updated:** 2025-12-19
+**Last Updated:** 2026-01-29
